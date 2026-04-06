@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GayPhim</title>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="assets/css/styles.css?v=2">
+</head>
+
+<body>
+    <!-- Navbar -->
+    <header>
+        <div class="nav-container">
+            <a href="index.html" class="logo">GAY <span>PHIM</span></a>
+            
+            <div class="nav-menu">
+                <div class="dropdown">
+                    <button class="dropbtn">Thể loại <i class="fas fa-chevron-down"></i></button>
+                    <div class="dropdown-content">
+                        <a href="index.html?category=hanh-dong">Hành động</a>
+                        <a href="index.html?category=tinh-cam">Tình cảm</a>
+                        <a href="index.html?category=kinh-di">Kinh dị</a>
+                        <a href="index.html?category=hai-huoc">Hài hước</a>
+                        <a href="index.html?category=hoat-hinh">Hoạt hình</a>
+                        <a href="index.html?category=phieu-luu">Phiêu lưu</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="search-bar">
+                <input type="text" id="searchInput" placeholder="Tìm kiếm phim...">
+                <i class="fas fa-search"></i>
+            </div>
+        </div>
+    </header>
+
+    <div class="loader active" id="movieLoader" style="margin-top: 150px;"></div>
+
+    <div id="movieContent" style="display: none;">
+        <!-- Movie Player Section -->
+        <section class="section" style="padding-top: 100px; padding-bottom: 0;">
+            <div class="player-container">
+                <iframe id="videoPlayer" src="" allowfullscreen></iframe>
+            </div>
+        </section>
+
+        <!-- Movie Detail -->
+        <section class="movie-detail-hero">
+            <div class="hero-backdrop" id="detailBackdrop"></div>
+            <div class="hero-overlay"></div>
+
+            <div class="movie-detail-container">
+                <img src="" alt="Poster" class="movie-detail-poster" id="detailPoster">
+
+                <div class="movie-detail-info">
+                    <div class="hero-tags" id="detailTags">
+                        <!-- Tags will be injected here -->
+                    </div>
+                    <h1 class="hero-title" id="detailTitle"></h1>
+                    <h3 style="color: var(--text-secondary); margin-bottom: 1.5rem; font-weight: 400"
+                        id="detailOriginalTitle"></h3>
+
+                    <p class="hero-desc" style="-webkit-line-clamp: unset; line-clamp: unset;" id="detailDesc"></p>
+
+                    <div style="margin-bottom: 2rem; color: var(--text-secondary);">
+                        <p><strong>Năm phát hành:</strong> <span id="detailYear"></span></p>
+                        <p><strong>Thời lượng:</strong> <span id="detailTime"></span></p>
+                        <p><strong>Chất lượng:</strong> <span id="detailQuality"></span></p>
+                        <p><strong>Quốc gia:</strong> <span id="detailCountry"></span></p>
+                        <p><strong>Đạo diễn:</strong> <span id="detailDirector"></span></p>
+                        <p><strong>Diễn viên:</strong> <span id="detailActors"></span></p>
+                    </div>
+
+                    <!-- Episode List -->
+                    <div class="server-list" id="serverContainer">
+                        <h3>Chọn Tập Phim</h3>
+                        <div id="episodesWrapper">
+                            <!-- Server & Episodes injected here -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/hls.js@latest"></script>
+    <script src="assets/js/api.js?v=3"></script>
+    <script src="assets/js/movie.js?v=3"></script>
+</body>
+
+</html>
