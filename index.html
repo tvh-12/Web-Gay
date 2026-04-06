@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GayPhim</title>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="assets/css/styles.css?v=2">
+</head>
+
+<body>
+    <!-- Navbar -->
+    <header>
+        <div class="nav-container">
+            <a href="index.html" class="logo">GAY <span>PHIM</span></a>
+            
+            <div class="nav-menu">
+                <div class="dropdown">
+                    <button class="dropbtn">Thể loại <i class="fas fa-chevron-down"></i></button>
+                    <div class="dropdown-content">
+                        <a href="index.html?category=hanh-dong">Hành động</a>
+                        <a href="index.html?category=tinh-cam">Tình cảm</a>
+                        <a href="index.html?category=kinh-di">Kinh dị</a>
+                        <a href="index.html?category=hai-huoc">Hài hước</a>
+                        <a href="index.html?category=hoat-hinh">Hoạt hình</a>
+                        <a href="index.html?category=phieu-luu">Phiêu lưu</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="search-bar">
+                <input type="text" id="searchInput" placeholder="Tìm kiếm phim...">
+                <i class="fas fa-search"></i>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero" id="heroSection">
+        <div class="hero-backdrop" id="heroBackdrop"></div>
+        <div class="hero-overlay"></div>
+        <div class="hero-content">
+            <div class="hero-tags" id="heroTags">
+                <span>HD Vietsub</span>
+                <span>Mới Cập Nhật</span>
+            </div>
+            <h1 class="hero-title" id="heroTitle">Đang tải...</h1>
+            <p class="hero-desc" id="heroDesc">Vui lòng chờ trong giây lát.</p>
+            <a href="#" class="btn btn-primary" id="heroPlayBtn">
+                <i class="fas fa-play"></i> Xem Ngay
+            </a>
+        </div>
+    </section>
+
+    <!-- Movies Grid Section -->
+    <section class="section">
+        <div class="section-header">
+            <h2 class="section-title">Phim Mới Cập Nhật</h2>
+        </div>
+
+        <div class="loader" id="moviesLoader"></div>
+
+        <div class="movie-grid" id="movieGrid">
+            <!-- Movie cards will be inserted here by JS -->
+        </div>
+
+        <!-- Pagination -->
+        <div class="pagination">
+            <button class="page-btn" id="prevBtn" disabled><i class="fas fa-chevron-left"></i></button>
+            <span class="page-btn active" id="currentPage">1</span>
+            <button class="page-btn" id="nextBtn"><i class="fas fa-chevron-right"></i></button>
+        </div>
+    </section>
+
+    <!-- Scripts -->
+    <script src="assets/js/api.js?v=3"></script>
+    <script src="assets/js/main.js?v=3"></script>
+</body>
+
+</html>
