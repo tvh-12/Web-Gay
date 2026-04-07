@@ -472,6 +472,24 @@ header {
     cursor: not-allowed;
 }
 
+.page-input {
+    background: var(--surface-color);
+    color: var(--text-primary);
+    border: 1px solid var(--glass-border);
+    padding: 0.8rem 1.2rem;
+    border-radius: 12px;
+    font-size: 1rem;
+    width: 140px;
+    outline: none;
+    transition: all 0.3s ease;
+}
+
+.page-input:focus {
+    background: var(--surface-light);
+    border-color: var(--accent-color);
+    box-shadow: 0 0 10px var(--accent-glow);
+}
+
 /* Details Page (Movie.html) */
 .movie-detail-hero {
     position: relative;

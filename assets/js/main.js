@@ -23,6 +23,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const prevBtn = document.getElementById('prevBtn');
     const nextBtn = document.getElementById('nextBtn');
     const currentPageSpan = document.getElementById('currentPage');
+    const jumpPageInput = document.getElementById('jumpPageInput');
 
     // Search
     const searchInput = document.getElementById('searchInput');
@@ -153,6 +154,19 @@ document.addEventListener('DOMContentLoaded', () => {
         loadMovies(currentPage + 1);
         document.getElementById('heroSection').scrollIntoView({behavior: 'smooth'});
     });
+
+    if (jumpPageInput) {
+        jumpPageInput.addEventListener('keypress', (e) => {
+            if (e.key === 'Enter') {
+                const page = parseInt(jumpPageInput.value);
+                if (!isNaN(page) && page > 0) {
+                    loadMovies(page);
+                    document.getElementById('heroSection').scrollIntoView({behavior: 'smooth'});
+                    jumpPageInput.value = '';
+                }
+            }
+        });
+    }
 
     let searchTimeout;
     searchInput.addEventListener('input', (e) => {
