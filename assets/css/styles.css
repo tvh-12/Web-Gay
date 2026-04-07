@@ -472,22 +472,42 @@ header {
     cursor: not-allowed;
 }
 
-.page-input {
+.page-input-wrapper {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    color: var(--text-secondary);
+    font-size: 1rem;
+    font-weight: 500;
+}
+
+.page-input-inline {
     background: var(--surface-color);
     color: var(--text-primary);
     border: 1px solid var(--glass-border);
-    padding: 0.8rem 1.2rem;
-    border-radius: 12px;
+    padding: 0.6rem;
+    border-radius: 8px;
     font-size: 1rem;
-    width: 140px;
+    font-weight: 700;
+    width: 65px;
+    text-align: center;
     outline: none;
     transition: all 0.3s ease;
 }
 
-.page-input:focus {
+.page-input-inline:focus {
     background: var(--surface-light);
     border-color: var(--accent-color);
     box-shadow: 0 0 10px var(--accent-glow);
+}
+
+.page-input-inline::-webkit-outer-spin-button,
+.page-input-inline::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+.page-input-inline[type=number] {
+    -moz-appearance: textfield;
 }
 
 /* Details Page (Movie.html) */

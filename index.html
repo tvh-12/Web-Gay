@@ -75,9 +75,12 @@
         <!-- Pagination -->
         <div class="pagination">
             <button class="page-btn" id="prevBtn" disabled><i class="fas fa-chevron-left"></i></button>
-            <span class="page-btn active" id="currentPage">1</span>
+            <div class="page-input-wrapper">
+                <span>Trang</span>
+                <input type="number" id="currentPageInput" class="page-input-inline" min="1" value="1" title="Nhập số trang và nhấn Enter">
+                <span id="totalPagesDisplay"></span>
+            </div>
             <button class="page-btn" id="nextBtn"><i class="fas fa-chevron-right"></i></button>
-            <input type="number" id="jumpPageInput" class="page-input" min="1" placeholder="Nhảy đến trang..." title="Nhập số trang và nhấn Enter">
         </div>
     </section>
 

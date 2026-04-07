@@ -22,8 +22,8 @@ document.addEventListener('DOMContentLoaded', () => {
     let currentPage = 1;
     const prevBtn = document.getElementById('prevBtn');
     const nextBtn = document.getElementById('nextBtn');
-    const currentPageSpan = document.getElementById('currentPage');
-    const jumpPageInput = document.getElementById('jumpPageInput');
+    const currentPageInput = document.getElementById('currentPageInput');
+    const totalPagesDisplay = document.getElementById('totalPagesDisplay');
 
     // Search
     const searchInput = document.getElementById('searchInput');
@@ -79,11 +79,12 @@ document.addEventListener('DOMContentLoaded', () => {
 
             // Update pagination state
             currentPage = page;
-            currentPageSpan.textContent = page;
+            if (currentPageInput) currentPageInput.value = page;
             prevBtn.disabled = page === 1;
             
             // Typical totalPages in some APIs is in data.pagination.totalPages
-            const totalPages = data.pagination?.totalPages || (page + 1); // fallback
+            const totalPages = data.pagination?.totalPages || (page + 10); // fallback
+            if (totalPagesDisplay) totalPagesDisplay.textContent = `/ ${totalPages}`;
             nextBtn.disabled = page >= totalPages;
         } else {
             movieGrid.innerHTML = '<p style="text-align:center; grid-column:1/-1;">Không tìm thấy phim nào.</p>';
@@ -155,14 +156,13 @@ document.addEventListener('DOMContentLoaded', () => {
         document.getElementById('heroSection').scrollIntoView({behavior: 'smooth'});
     });
 
-    if (jumpPageInput) {
-        jumpPageInput.addEventListener('keypress', (e) => {
+    if (currentPageInput) {
+        currentPageInput.addEventListener('keypress', (e) => {
             if (e.key === 'Enter') {
-                const page = parseInt(jumpPageInput.value);
+                const page = parseInt(currentPageInput.value);
                 if (!isNaN(page) && page > 0) {
                     loadMovies(page);
                     document.getElementById('heroSection').scrollIntoView({behavior: 'smooth'});
-                    jumpPageInput.value = '';
                 }
             }
         });
