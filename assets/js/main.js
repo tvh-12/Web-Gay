@@ -168,20 +168,127 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    let searchTimeout;
-    searchInput.addEventListener('input', (e) => {
-        clearTimeout(searchTimeout);
-        searchTimeout = setTimeout(() => {
-            currentPage = 1;
+    // --- Search Autocomplete ---
+    const suggestionsBox = document.getElementById('searchSuggestions');
+    let suggestTimeout;
+    let activeSuggestionIndex = -1;
+
+    function getSafeThumb(url) {
+        if (typeof url !== 'string' || url.length < 5) return 'https://phimimg.com/upload/vod/20230303-1/c2763dfef33b0036ee7bfeb6f2bdee5b.jpg';
+        if (url.startsWith('http')) return url;
+        return `https://phimimg.com/${url}`;
+    }
+
+    function hideSuggestions() {
+        suggestionsBox.classList.remove('visible');
+        activeSuggestionIndex = -1;
+    }
+
+    function showSuggestions(items, query) {
+        suggestionsBox.innerHTML = '';
+        if (!items || items.length === 0) {
+            hideSuggestions();
+            return;
+        }
+
+        const display = items.slice(0, 6);
+        display.forEach(item => {
+            const a = document.createElement('a');
+            a.href = `movie.html?slug=${item.slug}`;
+            a.className = 'suggestion-item';
+            const thumb = getSafeThumb(item.thumb_url || item.poster_url);
+            a.innerHTML = `
+                <img class="suggestion-thumb" src="${thumb}" alt="${item.name}" loading="lazy">
+                <div class="suggestion-info">
+                    <div class="suggestion-name">${item.name}</div>
+                    <div class="suggestion-meta">
+                        <span>${item.year || ''}</span>
+                        <span class="suggestion-badge">${item.episode_current || 'HD'}</span>
+                    </div>
+                </div>
+            `;
+            suggestionsBox.appendChild(a);
+        });
+
+        // "See all results" link
+        const seeAll = document.createElement('a');
+        seeAll.href = '#';
+        seeAll.className = 'suggestion-see-all';
+        seeAll.textContent = `Xem tất cả kết quả cho "${query}" →`;
+        seeAll.addEventListener('click', (e) => {
+            e.preventDefault();
+            hideSuggestions();
             loadMovies(1);
-        }, 800); // 800ms debounce
+        });
+        suggestionsBox.appendChild(seeAll);
+        suggestionsBox.classList.add('visible');
+        activeSuggestionIndex = -1;
+    }
+
+    async function fetchSuggestions(query) {
+        suggestionsBox.innerHTML = `
+            <div class="suggestion-loading">
+                <div class="mini-spin"></div> Đang tìm kiếm...
+            </div>`;
+        suggestionsBox.classList.add('visible');
+        try {
+            const data = await VSAPI.searchMovies(query, 1);
+            if (searchInput.value.trim() === query) { // guard for stale results
+                showSuggestions(data?.items, query);
+            }
+        } catch {
+            hideSuggestions();
+        }
+    }
+
+    searchInput.addEventListener('input', () => {
+        clearTimeout(suggestTimeout);
+        const query = searchInput.value.trim();
+        if (query.length < 2) {
+            hideSuggestions();
+            return;
+        }
+        suggestTimeout = setTimeout(() => fetchSuggestions(query), 350);
     });
 
-    searchInput.addEventListener('keypress', (e) => {
-        if (e.key === 'Enter') {
-            clearTimeout(searchTimeout);
-            currentPage = 1;
-            loadMovies(1);
+    // Keyboard navigation inside suggestions
+    searchInput.addEventListener('keydown', (e) => {
+        const items = suggestionsBox.querySelectorAll('.suggestion-item');
+        if (!suggestionsBox.classList.contains('visible')) {
+            if (e.key === 'Enter') { hideSuggestions(); loadMovies(1); }
+            return;
+        }
+        if (e.key === 'ArrowDown') {
+            e.preventDefault();
+            activeSuggestionIndex = Math.min(activeSuggestionIndex + 1, items.length - 1);
+        } else if (e.key === 'ArrowUp') {
+            e.preventDefault();
+            activeSuggestionIndex = Math.max(activeSuggestionIndex - 1, -1);
+        } else if (e.key === 'Enter') {
+            e.preventDefault();
+            if (activeSuggestionIndex >= 0 && items[activeSuggestionIndex]) {
+                items[activeSuggestionIndex].click();
+            } else {
+                hideSuggestions();
+                loadMovies(1);
+            }
+            return;
+        } else if (e.key === 'Escape') {
+            hideSuggestions();
+            return;
+        }
+        items.forEach((el, i) => el.classList.toggle('focused', i === activeSuggestionIndex));
+    });
+
+    // Close dropdown when clicking outside
+    document.addEventListener('click', (e) => {
+        if (!e.target.closest('.search-bar')) hideSuggestions();
+    });
+
+    searchInput.addEventListener('focus', () => {
+        const query = searchInput.value.trim();
+        if (query.length >= 2 && suggestionsBox.children.length > 0) {
+            suggestionsBox.classList.add('visible');
         }
     });
 

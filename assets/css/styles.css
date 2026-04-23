@@ -181,10 +181,133 @@ header {
 .search-bar i {
     position: absolute;
     right: 1.5rem;
-    top: 50%;
-    transform: translateY(-50%);
+    top: 1rem;
     color: var(--text-secondary);
     pointer-events: none;
+}
+
+/* Search Suggestions Dropdown */
+.search-suggestions {
+    position: absolute;
+    top: calc(100% + 8px);
+    left: 0;
+    right: 0;
+    background: var(--surface-color);
+    border: 1px solid var(--glass-border);
+    border-radius: 16px;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.6), 0 0 0 1px rgba(225, 29, 72, 0.1);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    z-index: 500;
+    overflow: hidden;
+    max-height: 420px;
+    overflow-y: auto;
+    opacity: 0;
+    transform: translateY(-8px);
+    visibility: hidden;
+    transition: all 0.25s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.search-suggestions.visible {
+    opacity: 1;
+    transform: translateY(0);
+    visibility: visible;
+}
+
+.suggestion-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 10px 14px;
+    text-decoration: none;
+    color: var(--text-primary);
+    transition: background 0.2s ease;
+    border-bottom: 1px solid var(--glass-border);
+}
+
+.suggestion-item:last-child {
+    border-bottom: none;
+}
+
+.suggestion-item:hover,
+.suggestion-item.focused {
+    background: var(--surface-light);
+}
+
+.suggestion-thumb {
+    width: 44px;
+    height: 62px;
+    object-fit: cover;
+    border-radius: 8px;
+    flex-shrink: 0;
+    background: var(--surface-light);
+}
+
+.suggestion-info {
+    flex: 1;
+    overflow: hidden;
+}
+
+.suggestion-name {
+    font-size: 0.95rem;
+    font-weight: 600;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    margin-bottom: 3px;
+}
+
+.suggestion-meta {
+    font-size: 0.8rem;
+    color: var(--text-secondary);
+    display: flex;
+    gap: 8px;
+    align-items: center;
+}
+
+.suggestion-badge {
+    background: rgba(225, 29, 72, 0.2);
+    color: var(--accent-color);
+    padding: 1px 7px;
+    border-radius: 20px;
+    font-size: 0.75rem;
+    font-weight: 600;
+}
+
+.suggestion-loading {
+    padding: 20px;
+    text-align: center;
+    color: var(--text-secondary);
+    font-size: 0.9rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+}
+
+.suggestion-loading .mini-spin {
+    width: 16px;
+    height: 16px;
+    border: 2px solid var(--surface-light);
+    border-top-color: var(--accent-color);
+    border-radius: 50%;
+    animation: spin 0.8s linear infinite;
+}
+
+.suggestion-see-all {
+    display: block;
+    padding: 12px;
+    text-align: center;
+    color: var(--accent-color);
+    font-size: 0.9rem;
+    font-weight: 600;
+    text-decoration: none;
+    background: rgba(225, 29, 72, 0.05);
+    transition: background 0.2s;
+}
+
+.suggestion-see-all:hover {
+    background: rgba(225, 29, 72, 0.12);
 }
 
 /* Hero Section */
