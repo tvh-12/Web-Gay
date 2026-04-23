@@ -254,25 +254,24 @@ document.addEventListener('DOMContentLoaded', () => {
     // Keyboard navigation inside suggestions
     searchInput.addEventListener('keydown', (e) => {
         const items = suggestionsBox.querySelectorAll('.suggestion-item');
-        if (!suggestionsBox.classList.contains('visible')) {
-            if (e.key === 'Enter') { hideSuggestions(); loadMovies(1); }
+
+        if (e.key === 'Enter') {
+            e.preventDefault();
+            hideSuggestions();
+            currentPage = 1;
+            loadMovies(1);
+            document.querySelector('.section').scrollIntoView({ behavior: 'smooth' });
             return;
         }
+
+        if (!suggestionsBox.classList.contains('visible')) return;
+
         if (e.key === 'ArrowDown') {
             e.preventDefault();
             activeSuggestionIndex = Math.min(activeSuggestionIndex + 1, items.length - 1);
         } else if (e.key === 'ArrowUp') {
             e.preventDefault();
             activeSuggestionIndex = Math.max(activeSuggestionIndex - 1, -1);
-        } else if (e.key === 'Enter') {
-            e.preventDefault();
-            if (activeSuggestionIndex >= 0 && items[activeSuggestionIndex]) {
-                items[activeSuggestionIndex].click();
-            } else {
-                hideSuggestions();
-                loadMovies(1);
-            }
-            return;
         } else if (e.key === 'Escape') {
             hideSuggestions();
             return;
