@@ -13,9 +13,83 @@ document.addEventListener('DOMContentLoaded', () => {
     const slug = urlParams.get('slug');
 
     const searchInput = document.getElementById('searchInput');
-    searchInput.addEventListener('keypress', (e) => {
+    const suggestionsBox = document.getElementById('searchSuggestions');
+    let suggestTimeout;
+
+    const hideSuggestions = () => {
+        suggestionsBox.classList.remove('visible');
+    };
+
+    const getSafeThumb = (url) => {
+        if (typeof url !== 'string' || url.length < 5) return 'https://phimimg.com/upload/vod/20230303-1/c2763dfef33b0036ee7bfeb6f2bdee5b.jpg';
+        if (url.startsWith('http')) return url;
+        return `https://phimimg.com/${url}`;
+    };
+
+    const showSuggestions = (items, query) => {
+        suggestionsBox.innerHTML = '';
+        if (!items || items.length === 0) {
+            hideSuggestions();
+            return;
+        }
+
+        items.slice(0, 6).forEach(item => {
+            const a = document.createElement('a');
+            a.href = `movie.html?slug=${item.slug}`;
+            a.className = 'suggestion-item';
+            a.innerHTML = `
+                <img class="suggestion-thumb" src="${getSafeThumb(item.thumb_url || item.poster_url)}" alt="${item.name}" loading="lazy">
+                <div class="suggestion-info">
+                    <div class="suggestion-name">${item.name}</div>
+                    <div class="suggestion-meta">
+                        <span>${item.year || ''}</span>
+                        <span class="suggestion-badge">${item.episode_current || 'HD'}</span>
+                    </div>
+                </div>
+            `;
+            suggestionsBox.appendChild(a);
+        });
+
+        const seeAll = document.createElement('a');
+        seeAll.href = `index.html?search=${encodeURIComponent(query)}`;
+        seeAll.className = 'suggestion-see-all';
+        seeAll.textContent = `Xem tất cả kết quả cho "${query}" →`;
+        suggestionsBox.appendChild(seeAll);
+        suggestionsBox.classList.add('visible');
+    };
+
+    searchInput.addEventListener('input', () => {
+        clearTimeout(suggestTimeout);
+        const query = searchInput.value.trim();
+        if (query.length < 2) {
+            hideSuggestions();
+            return;
+        }
+
+        suggestTimeout = setTimeout(async () => {
+            try {
+                const data = await VSAPI.searchMovies(query, 1);
+                if (searchInput.value.trim() === query) {
+                    showSuggestions(data?.items, query);
+                }
+            } catch {
+                hideSuggestions();
+            }
+        }, 350);
+    });
+
+    searchInput.addEventListener('keydown', (e) => {
         if (e.key === 'Enter') {
-            window.location.href = `index.html?search=${encodeURIComponent(searchInput.value)}`;
+            const query = searchInput.value.trim();
+            if (query) {
+                window.location.href = `index.html?search=${encodeURIComponent(query)}`;
+            }
+        }
+    });
+
+    document.addEventListener('click', (e) => {
+        if (!searchInput.contains(e.target) && !suggestionsBox.contains(e.target)) {
+            hideSuggestions();
         }
     });
 
