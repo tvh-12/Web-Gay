@@ -1,130 +1,137 @@
-const API_BASE_URL = 'https://vsmov.com/api';
+// ============================================================
+//  API Layer - GayPhim
+//  Nguồn chính: phimapi.com (cùng nguồn với MotPhim, PhimMoiChill)
+//  CDN ảnh   : phimimg.com
+// ============================================================
+
+const CDN_IMAGE = 'https://phimimg.com';
+
+// Chuẩn hoá URL ảnh (một số item trả về path tương đối)
+function normalizeImage(url) {
+    if (!url || url.length < 5) {
+        return `${CDN_IMAGE}/upload/vod/20230303-1/c2763dfef33b0036ee7bfeb6f2bdee5b.jpg`;
+    }
+    if (url.startsWith('http')) return url;
+    return `${CDN_IMAGE}/${url}`;
+}
 
 const VSAPI = {
-    // Lấy danh sách phim mới cập nhật
+
+    // ── Danh sách phim mới cập nhật ─────────────────────────
     getLatestMovies: async (page = 1) => {
         try {
-            const url = `https://vsmov.com/api/danh-sach/phim-moi-cap-nhat?page=${page}`;
-            console.log('Fetching URL:', url); // Debug
-            
-            const response = await fetch(url);
-            if (!response.ok) {
-                // If the direct fetch fails due to CORS, we can try using a cors proxy if necessary.
-                // Assuming it works based on 'Nguồn API Phim Miễn Phí'
-                throw new Error(`HTTP error! status: ${response.status}`);
-            }
-            return await response.json();
-        } catch (error) {
-            console.error("Error fetching latest movies:", error);
-            // Fallback or let UI handle it
+            const url = `https://phimapi.com/danh-sach/phim-moi-cap-nhat?page=${page}`;
+            const res = await fetch(url);
+            if (!res.ok) throw new Error(`HTTP ${res.status}`);
+            const json = await res.json();
+
+            if (!json.status || !json.items) return null;
+
+            // Chuẩn hoá ảnh
+            json.items = json.items.map(m => ({
+                ...m,
+                poster_url: normalizeImage(m.poster_url),
+                thumb_url:  normalizeImage(m.thumb_url),
+            }));
+
+            return {
+                status: true,
+                items: json.items,
+                pagination: json.pagination || {}
+            };
+        } catch (err) {
+            console.error('[API] getLatestMovies:', err);
             return null;
         }
     },
 
-    // Tìm kiếm phim
+    // ── Tìm kiếm phim ───────────────────────────────────────
     searchMovies: async (keyword, page = 1) => {
         try {
-            // Đúng chuẩn API tìm kiếm của VSMOV
-            const url = `https://vsmov.com/api/tim-kiem?keyword=${encodeURIComponent(keyword)}&limit=10&page=${page}`;
-            const response = await fetch(url);
-            if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
-            return await response.json();
-        } catch (error) {
-            console.error("Error searching movies:", error);
+            const url = `https://phimapi.com/v1/api/tim-kiem?keyword=${encodeURIComponent(keyword)}&limit=12&page=${page}`;
+            const res = await fetch(url);
+            if (!res.ok) throw new Error(`HTTP ${res.status}`);
+            const json = await res.json();
+
+            const raw = json?.data?.items || [];
+            const items = raw.map(m => ({
+                ...m,
+                poster_url: normalizeImage(m.poster_url),
+                thumb_url:  normalizeImage(m.thumb_url),
+            }));
+
+            const params = json?.data?.params?.pagination || {};
+            return {
+                status: true,
+                items,
+                pagination: {
+                    totalItems:        params.totalItems        || items.length,
+                    totalItemsPerPage: params.totalItemsPerPage || 12,
+                    currentPage:       params.currentPage       || page,
+                    totalPages:        params.totalPages        || 1,
+                }
+            };
+        } catch (err) {
+            console.error('[API] searchMovies:', err);
             return null;
         }
     },
 
-    // Lọc theo thể loại
+    // ── Lọc theo thể loại ───────────────────────────────────
     getMoviesByCategory: async (categorySlug, page = 1) => {
         try {
-            // Máy chủ VSMOV lọc thể loại bị chập chờn, tự động mượn kết quả phân loại chuẩn từ PhimAPI
-            const url = `https://phimapi.com/v1/api/the-loai/${categorySlug}?page=${page}`;
-            const response = await fetch(url);
-            if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
-            const data = await response.json();
-            
-            if (data.status === true && data.data && data.data.items) {
-                return {
-                    status: true,
-                    items: data.data.items,
-                    pagination: data.data.params?.pagination || {}
-                };
-            }
-            return { status: false, items: [] };
-        } catch (error) {
-            console.error("Error fetching category movies:", error);
+            const url = `https://phimapi.com/v1/api/the-loai/${categorySlug}?page=${page}&limit=24`;
+            const res = await fetch(url);
+            if (!res.ok) throw new Error(`HTTP ${res.status}`);
+            const json = await res.json();
+
+            const raw = json?.data?.items || [];
+            const items = raw.map(m => ({
+                ...m,
+                poster_url: normalizeImage(m.poster_url),
+                thumb_url:  normalizeImage(m.thumb_url),
+            }));
+
+            const pg = json?.data?.params?.pagination || {};
+            return {
+                status: true,
+                items,
+                pagination: {
+                    totalItems:        pg.totalItems        || items.length,
+                    totalItemsPerPage: pg.totalItemsPerPage || 24,
+                    currentPage:       pg.currentPage       || page,
+                    totalPages:        pg.totalPages        || 1,
+                }
+            };
+        } catch (err) {
+            console.error('[API] getMoviesByCategory:', err);
             return null;
         }
     },
 
-    // Lấy chi tiết phim
+    // ── Chi tiết phim + tập phim ────────────────────────────
     getMovieDetail: async (slug) => {
         try {
-            let vsData = null;
+            const url = `https://phimapi.com/phim/${slug}`;
+            const res = await fetch(url);
+            if (!res.ok) throw new Error(`HTTP ${res.status}`);
+            const json = await res.json();
 
-            // 1. Phải lấy dữ liệu gốc từ VSMOV
-            try {
-                const vsUrl = `https://vsmov.com/api/phim/${slug}`;
-                const vsResponse = await fetch(vsUrl);
-                vsData = await vsResponse.json();
-            } catch (e) {
-                console.warn("Lỗi lấy phim từ VSMOV:", e);
-            }
+            if (!json.status || !json.movie) return null;
 
-            // 1.1 Nếu VSMOV không có phim này (Thường do slug lấy từ PhimAPI), ta phải fetch chi tiết từ PhimAPI
-            if (!vsData || !vsData.status) {
-                try {
-                    const failoverUrl = `https://phimapi.com/phim/${slug}`;
-                    const failoverRes = await fetch(failoverUrl);
-                    vsData = await failoverRes.json();
-                } catch (e) {}
-            }
+            // Chuẩn hoá ảnh phim
+            json.movie.poster_url = normalizeImage(json.movie.poster_url);
+            json.movie.thumb_url  = normalizeImage(json.movie.thumb_url);
 
-            if (!vsData || !vsData.status) {
-                return null; // Không trang nào có
-            }
+            // Trả về định dạng tương thích với movie.js
+            return {
+                status:   true,
+                movie:    json.movie,
+                episodes: json.episodes || []
+            };
 
-            let episodes = vsData.episodes || [];
-
-            // 2. Tự động mượn link xem phim bổ sung từ các cụm server mở khác (Ophim & KKPhim)
-            if (episodes.length === 0 && vsData.movie && vsData.movie.name) {
-                const searchKeyword = encodeURIComponent(vsData.movie.name);
-                
-                // Fallback 1: Thử tìm ở hệ thống Ophim1
-                try {
-                    const ophimRes = await fetch(`https://ophim1.com/v1/api/tim-kiem?keyword=${searchKeyword}`);
-                    const ophimData = await ophimRes.json();
-                    
-                    if (ophimData?.data?.items?.length > 0) {
-                        const ophimDetail = await fetch(`https://ophim1.com/phim/${ophimData.data.items[0].slug}`).then(r=>r.json());
-                        if (ophimDetail?.status && ophimDetail.episodes) {
-                            episodes = ophimDetail.episodes;
-                        }
-                    }
-                } catch (e) { console.warn("Lỗi server 1:", e); }
-
-                // Fallback 2: Nếu hệ thống 1 không có, thử tìm tiếp ở hệ thống KKPhim (PhimAPI)
-                if (episodes.length === 0) {
-                    try {
-                        const kkRes = await fetch(`https://phimapi.com/v1/api/tim-kiem?keyword=${searchKeyword}`);
-                        const kkData = await kkRes.json();
-                        
-                        if (kkData?.data?.items?.length > 0) {
-                            const kkDetail = await fetch(`https://phimapi.com/phim/${kkData.data.items[0].slug}`).then(r=>r.json());
-                            if (kkDetail?.status && kkDetail.episodes) {
-                                episodes = kkDetail.episodes;
-                            }
-                        }
-                    } catch (e) { console.warn("Lỗi server 2:", e); }
-                }
-            }
-
-            vsData.episodes = episodes;
-            return vsData;
-
-        } catch (error) {
-            console.error("Error fetching movie detail:", error);
+        } catch (err) {
+            console.error('[API] getMovieDetail:', err);
             return null;
         }
     }
