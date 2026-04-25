@@ -118,7 +118,6 @@ header {
 /* Dropdown Menu */
 .nav-menu {
     margin-left: 2rem;
-    flex-grow: 1;
 }
 
 .dropdown {
