@@ -79,6 +79,32 @@ header {
     -webkit-text-fill-color: transparent;
 }
 
+/* Tagline quý phái giữa navbar */
+.nav-tagline {
+    font-family: 'Playfair Display', Georgia, serif;
+    font-style: italic;
+    font-weight: 600;
+    font-size: 0.95rem;
+    color: transparent;
+    background: linear-gradient(90deg, #c9a96e, #f0d080, #c9a96e);
+    background-size: 200% auto;
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: shimmer 3s linear infinite;
+    letter-spacing: 0.3px;
+    white-space: nowrap;
+    flex: 1;
+    text-align: center;
+    pointer-events: none;
+    user-select: none;
+}
+
+@keyframes shimmer {
+    0%   { background-position: 0% center; }
+    100% { background-position: 200% center; }
+}
+
 @keyframes rainbow {
     0% { background-position: 0% 50%; }
     100% { background-position: 100% 50%; }
