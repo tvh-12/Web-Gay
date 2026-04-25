@@ -314,9 +314,11 @@ header {
 .hero {
     position: relative;
     height: 80vh;
+    min-height: 500px;
     display: flex;
     align-items: center;
     padding: 0 2rem;
+    padding-top: 90px; /* bù chiều cao thanh nav cố định */
     margin-top: 0;
 }
 
