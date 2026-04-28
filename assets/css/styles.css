@@ -753,9 +753,23 @@ header {
 
 /* Responsive */
 @media (max-width: 768px) {
-    .nav-container { padding: 1rem; }
-    .search-bar { display: none; /* simple workaround for mobile, can be improved */ }
+    .nav-container { 
+        padding: 1rem;
+        flex-wrap: wrap;
+        gap: 0.5rem;
+    }
+    .logo { font-size: 1.5rem; }
+    .nav-menu { margin-left: auto; }
+    .nav-tagline { display: none; }
+    .search-bar { 
+        display: block; 
+        width: 100%; 
+        order: 4;
+        margin-top: 0.5rem;
+    }
     .hero-title { font-size: 2.5rem; }
+    .hero { padding-top: 130px; } /* bù thêm không gian cho navbar 2 dòng */
+    .movie-detail-hero { padding-top: 160px; } /* bù thêm không gian cho navbar ở trang chi tiết phim */
     .movie-detail-container { flex-direction: column; gap: 2rem; align-items: center; }
     .movie-detail-poster { width: 250px; }
 }
