@@ -756,16 +756,24 @@ header {
     .nav-container { 
         padding: 1rem;
         flex-wrap: wrap;
-        gap: 0.5rem;
+        justify-content: center;
+        gap: 1rem;
     }
     .logo { font-size: 1.5rem; }
-    .nav-menu { margin-left: auto; }
+    .nav-menu { margin-left: 0; }
     .nav-tagline { display: none; }
     .search-bar { 
         display: block; 
         width: 100%; 
         order: 4;
         margin-top: 0.5rem;
+    }
+    .dropdown-content {
+        left: 50%;
+        transform: translateX(-50%) translateY(10px);
+    }
+    .dropdown:hover .dropdown-content {
+        transform: translateX(-50%) translateY(0);
     }
     .hero-title { font-size: 2.5rem; }
     .hero { padding-top: 130px; } /* bù thêm không gian cho navbar 2 dòng */
