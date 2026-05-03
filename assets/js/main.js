@@ -2,11 +2,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // Navigation transparent on scroll
     const header = document.querySelector('header');
     window.addEventListener('scroll', () => {
-        if (window.scrollY > 50) {
-            header.style.background = 'rgba(2, 6, 23, 0.9)'; // Darker on scroll
-        } else {
-            header.style.background = 'var(--glass-bg)';
-        }
+        header.classList.toggle('scrolled', window.scrollY > 50);
     });
 
     // Dropdown toggle on click
