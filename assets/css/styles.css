@@ -56,7 +56,7 @@ header {
 .nav-container {
     max-width: 1400px;
     margin: 0 auto;
-    padding: 1.5rem 2rem;
+    padding: 0.5rem 2rem;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -74,7 +74,7 @@ header {
 }
 
 .logo img {
-    height: 100px;
+    height: 140px;
     width: auto;
     object-fit: contain;
     filter: drop-shadow(0 4px 6px rgba(0,0,0,0.5));
@@ -349,7 +349,7 @@ header {
     display: flex;
     align-items: center;
     padding: 0 2rem;
-    padding-top: 90px; /* bù chiều cao thanh nav cố định */
+    padding-top: 160px; /* bù chiều cao thanh nav cố định */
     margin-top: 0;
 }
 
@@ -673,7 +673,7 @@ header {
 /* Details Page (Movie.html) */
 .movie-detail-hero {
     position: relative;
-    padding-top: 120px;
+    padding-top: 160px;
     padding-bottom: 4rem;
     min-height: auto;
 }
@@ -742,7 +742,7 @@ header {
 }
 
 .movie-player-section {
-    padding-top: 100px;
+    padding-top: 160px;
     padding-bottom: 0;
     max-width: 1400px;
     margin: 0 auto;
@@ -776,7 +776,7 @@ header {
         gap: 1rem;
     }
     .logo { font-size: 1.5rem; }
-    .logo img { height: 80px; }
+    .logo img { height: 100px; }
     .nav-menu { margin-left: 0; }
     .nav-tagline { display: none; }
     .search-bar { 
@@ -793,9 +793,9 @@ header {
         transform: translateX(-50%) translateY(0);
     }
     .hero-title { font-size: 2.5rem; }
-    .hero { padding-top: 130px; } /* bù thêm không gian cho navbar 2 dòng */
-    .movie-player-section { padding-top: 160px; padding-left: 1rem; padding-right: 1rem; } /* Đẩy video xuống trên mobile */
-    .movie-detail-hero { padding-top: 160px; } /* bù thêm không gian cho navbar ở trang chi tiết phim */
+    .hero { padding-top: 200px; } /* bù thêm không gian cho navbar 2 dòng */
+    .movie-player-section { padding-top: 220px; padding-left: 1rem; padding-right: 1rem; } /* Đẩy video xuống trên mobile */
+    .movie-detail-hero { padding-top: 220px; } /* bù thêm không gian cho navbar ở trang chi tiết phim */
     .movie-detail-container { 
         flex-direction: column; 
         gap: 2rem; 
