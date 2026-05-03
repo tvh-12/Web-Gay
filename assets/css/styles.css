@@ -74,7 +74,7 @@ header {
 }
 
 .logo img {
-    height: 50px;
+    height: 80px;
     width: auto;
     object-fit: contain;
     border-radius: 12px;
@@ -776,6 +776,7 @@ header {
         gap: 1rem;
     }
     .logo { font-size: 1.5rem; }
+    .logo img { height: 60px; }
     .nav-menu { margin-left: 0; }
     .nav-tagline { display: none; }
     .search-bar { 
