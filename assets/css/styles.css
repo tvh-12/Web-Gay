@@ -798,32 +798,45 @@ header {
 .plyr {
     width: 100%;
     height: 100%;
-    display: flex;
-    flex-direction: column;
     --plyr-color-main: #0ea5e9; /* Sky blue theme */
+    position: relative !important;
 }
 
 .plyr__video-wrapper {
-    flex-grow: 1;
-    display: flex;
-    align-items: center;
-    background: #000;
+    position: absolute !important;
+    top: 0 !important;
+    left: 0 !important;
+    right: 0 !important;
+    bottom: 60px !important; /* Chừa 60px dưới đáy cho controls */
+    height: auto !important;
+    background: #000 !important;
 }
 
 .plyr video {
-    max-height: 100%;
+    width: 100% !important;
+    height: 100% !important;
+    object-fit: contain !important; /* Đảm bảo video không bị cắt xén, luôn full và có viền đen nếu cần */
 }
 
 .plyr__controls {
-    position: relative !important; /* Không nổi lên đè video */
+    position: absolute !important; 
     bottom: 0 !important;
-    background: #0f172a !important; /* Khớp với màu nền tối */
-    padding: 15px !important;
+    left: 0 !important;
+    right: 0 !important;
+    width: 100% !important;
+    height: 60px !important; /* Cao đúng 60px */
+    background: #0f172a !important; 
+    padding: 0 20px !important;
+    transform: none !important; /* Chặn hiệu ứng ẩn/hiện làm bay control */
+    opacity: 1 !important; /* Luôn hiển thị */
+    visibility: visible !important;
+    display: flex !important;
+    align-items: center !important;
+    border-top: 1px solid var(--glass-border);
 }
 
 .plyr--video .plyr__controls {
     background: #0f172a !important;
-    border-top: 1px solid var(--glass-border);
 }
 
 /* Responsive */
