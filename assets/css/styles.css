@@ -936,4 +936,34 @@ header.scrolled {
     }
     .movie-detail-info { width: 100%; }
     .movie-detail-poster { width: 250px; }
+
+    /* Tối ưu Plyr cho Mobile */
+    .plyr__controls {
+        height: auto !important; /* Xóa fix cứng 60px */
+        flex-wrap: wrap !important; /* Cho phép xuống dòng */
+        padding: 10px !important;
+        justify-content: center !important; /* Căn giữa các nút */
+        border-radius: 12px !important;
+    }
+    
+    /* Ép thanh Tiến trình (Progress bar) chiếm trọn 1 dòng trên cùng */
+    .plyr__controls .plyr__progress {
+        width: 100% !important;
+        flex: 1 1 100% !important;
+        order: -1; /* Luôn đứng đầu */
+        margin-bottom: 10px !important; /* Cách các nút bên dưới */
+    }
+
+    /* Đẩy video lên cao hơn để không bị controls đè khi rớt dòng */
+    .plyr__video-wrapper {
+        bottom: 110px !important; 
+    }
+    
+    /* Thu nhỏ font thời gian và các nút để tránh chật chội */
+    .plyr__time {
+        font-size: 11px !important;
+    }
+    .plyr__controls button {
+        padding: 6px !important;
+    }
 }
