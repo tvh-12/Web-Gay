@@ -130,11 +130,11 @@ header {
 }
 
 .dropbtn {
-    background: rgba(255, 105, 180, 0.15);
-    color: #ff69b4;
+    background: rgba(14, 165, 233, 0.15);
+    color: #0ea5e9;
     font-size: 1.05rem;
     font-weight: 700;
-    border: 2px solid rgba(255, 105, 180, 0.4);
+    border: 2px solid rgba(14, 165, 233, 0.4);
     border-radius: 25px;
     cursor: pointer;
     padding: 8px 20px;
@@ -142,21 +142,21 @@ header {
     align-items: center;
     gap: 8px;
     transition: all 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
-    box-shadow: 0 4px 10px rgba(255, 105, 180, 0.1);
+    box-shadow: 0 4px 10px rgba(14, 165, 233, 0.1);
 }
 
 .dropbtn:hover {
-    background: rgba(255, 105, 180, 0.25);
-    color: #ff1493;
+    background: rgba(14, 165, 233, 0.25);
+    color: #0284c7;
     transform: translateY(-3px) scale(1.03);
-    box-shadow: 0 6px 15px rgba(255, 105, 180, 0.25);
+    box-shadow: 0 6px 15px rgba(14, 165, 233, 0.25);
 }
 
 .dropdown.show .dropbtn {
-    background: #ff69b4;
+    background: #0ea5e9;
     color: white;
-    border-color: #ff69b4;
-    box-shadow: 0 4px 15px rgba(255, 105, 180, 0.4);
+    border-color: #0ea5e9;
+    box-shadow: 0 4px 15px rgba(14, 165, 233, 0.4);
 }
 
 .dropbtn i {
