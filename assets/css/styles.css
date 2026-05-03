@@ -74,10 +74,10 @@ header {
 }
 
 .logo img {
-    height: 80px;
+    height: 100px;
     width: auto;
     object-fit: contain;
-    border-radius: 12px;
+    mix-blend-mode: screen;
 }
 
 /* Tagline quý phái giữa navbar */
@@ -776,7 +776,7 @@ header {
         gap: 1rem;
     }
     .logo { font-size: 1.5rem; }
-    .logo img { height: 60px; }
+    .logo img { height: 80px; }
     .nav-menu { margin-left: 0; }
     .nav-tagline { display: none; }
     .search-bar { 
