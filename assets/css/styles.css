@@ -784,12 +784,46 @@ header {
     margin-bottom: 2rem;
     box-shadow: 0 20px 40px rgba(0,0,0,0.8);
     border: 1px solid var(--glass-border);
+    display: flex;
+    flex-direction: column;
 }
 
 .player-container iframe {
     width: 100%;
     height: 100%;
     border: none;
+}
+
+/* Custom Plyr Styles (Ngăn đè Sub) */
+.plyr {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    --plyr-color-main: #0ea5e9; /* Sky blue theme */
+}
+
+.plyr__video-wrapper {
+    flex-grow: 1;
+    display: flex;
+    align-items: center;
+    background: #000;
+}
+
+.plyr video {
+    max-height: 100%;
+}
+
+.plyr__controls {
+    position: relative !important; /* Không nổi lên đè video */
+    bottom: 0 !important;
+    background: #0f172a !important; /* Khớp với màu nền tối */
+    padding: 15px !important;
+}
+
+.plyr--video .plyr__controls {
+    background: #0f172a !important;
+    border-top: 1px solid var(--glass-border);
 }
 
 /* Responsive */

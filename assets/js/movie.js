@@ -261,16 +261,53 @@ function renderEpisodes(servers) {
     }
 }
 
-function playEpisode(m3u8, embed) {
-    const player = document.getElementById('videoPlayer');
-    // Bắt buộc dùng lại link embed vì Server chặn luồng xem trực tiếp ở trang ngoài
-    if (embed) {
-        player.src = embed;
-    } else {
-        console.warn("Không có link nhúng, buộc phải dùng HLS m3u8 (dễ bị chặn):", m3u8);
-        player.src = m3u8;
+// Initialize Plyr player globally
+let plyrPlayer = null;
+
+function initPlayer() {
+    if (!plyrPlayer) {
+        const video = document.getElementById('videoPlayer');
+        plyrPlayer = new Plyr(video, {
+            controls: [
+                'play-large', 'play', 'progress', 'current-time', 'duration', 
+                'mute', 'volume', 'captions', 'settings', 'pip', 'airplay', 'fullscreen'
+            ],
+            settings: ['quality', 'speed'],
+            autoplay: true
+        });
     }
+}
+
+function playEpisode(m3u8, embed) {
+    const video = document.getElementById('videoPlayer');
+    initPlayer();
+
+    // Dùng HLS.js để phát luồng m3u8
+    if (m3u8 && Hls.isSupported()) {
+        if (window.hlsInstance) {
+            window.hlsInstance.destroy();
+        }
+        const hls = new Hls({
+            maxMaxBufferLength: 100,
+        });
+        hls.loadSource(m3u8);
+        hls.attachMedia(video);
+        window.hlsInstance = hls;
+        
+        hls.on(Hls.Events.MANIFEST_PARSED, function () {
+            video.play().catch(e => console.log("Autoplay prevented"));
+        });
+    } 
+    // Fallback cho Safari (Hỗ trợ m3u8 native)
+    else if (video.canPlayType('application/vnd.apple.mpegurl') && m3u8) {
+        video.src = m3u8;
+        video.addEventListener('loadedmetadata', function() {
+            video.play().catch(e => console.log("Autoplay prevented"));
+        });
+    } 
+    // Nếu cả 2 cách m3u8 đều lỗi, buộc phải fallback lại iframe (hiếm gặp vì ta đã đổi HTML thành video tag)
+    // Tạm thời nếu m3u8 hỏng, Plyr sẽ báo lỗi.
     
-    // Scroll to player smoothly
+    // Cuộn lên mượt mà
     document.querySelector('.player-container').scrollIntoView({behavior: 'smooth', block: 'center'});
 }
