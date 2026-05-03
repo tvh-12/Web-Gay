@@ -690,7 +690,7 @@ header {
 /* Details Page (Movie.html) */
 .movie-detail-hero {
     position: relative;
-    padding-top: 160px;
+    padding-top: 4rem;
     padding-bottom: 4rem;
     min-height: auto;
 }
@@ -767,6 +767,14 @@ header {
     padding-right: 2rem;
 }
 
+.movie-episode-section {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding-left: 2rem;
+    padding-right: 2rem;
+    padding-bottom: 2rem;
+}
+
 .player-container {
     width: 100%;
     aspect-ratio: 16/9;
@@ -812,7 +820,8 @@ header {
     .hero-title { font-size: 2.5rem; }
     .hero { padding-top: 200px; } /* bù thêm không gian cho navbar 2 dòng */
     .movie-player-section { padding-top: 220px; padding-left: 1rem; padding-right: 1rem; } /* Đẩy video xuống trên mobile */
-    .movie-detail-hero { padding-top: 220px; } /* bù thêm không gian cho navbar ở trang chi tiết phim */
+    .movie-episode-section { padding-left: 1rem; padding-right: 1rem; padding-bottom: 1rem; }
+    .movie-detail-hero { padding-top: 2rem; } /* không cần bù navbar nữa */
     .movie-detail-container { 
         flex-direction: column; 
         gap: 2rem; 
