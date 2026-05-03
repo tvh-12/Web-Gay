@@ -9,6 +9,24 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 
+    // Dropdown toggle on click
+    const dropbtn = document.querySelector('.dropbtn');
+    const dropdown = document.querySelector('.dropdown');
+    const dropIcon = dropbtn.querySelector('i');
+    
+    dropbtn.addEventListener('click', (e) => {
+        e.stopPropagation(); // prevent document click from immediately closing it
+        dropdown.classList.toggle('show');
+        dropIcon.classList.toggle('rotate');
+    });
+
+    document.addEventListener('click', (e) => {
+        if (!dropdown.contains(e.target) && dropdown.classList.contains('show')) {
+            dropdown.classList.remove('show');
+            dropIcon.classList.remove('rotate');
+        }
+    });
+
     const urlParams = new URLSearchParams(window.location.search);
     const slug = urlParams.get('slug');
 
