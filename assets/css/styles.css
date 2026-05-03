@@ -95,7 +95,7 @@ header {
     background-clip: text;
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
-    animation: shimmer 3s linear infinite;
+    animation: shimmer 8s linear infinite;
     letter-spacing: 0.3px;
     white-space: nowrap;
     flex: 1;
