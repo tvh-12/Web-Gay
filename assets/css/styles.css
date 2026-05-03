@@ -77,7 +77,7 @@ header {
     height: 100px;
     width: auto;
     object-fit: contain;
-    mix-blend-mode: screen;
+    filter: drop-shadow(0 4px 6px rgba(0,0,0,0.5));
 }
 
 /* Tagline quý phái giữa navbar */
