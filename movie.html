@@ -41,10 +41,15 @@
 
             <span class="nav-tagline">Web Phim Dành Cho Các Gayer</span>
 
-            <div class="search-bar">
-                <input type="text" id="searchInput" placeholder="Tìm kiếm phim..." autocomplete="off">
-                <i class="fas fa-search"></i>
-                <div class="search-suggestions" id="searchSuggestions"></div>
+            <div class="nav-right">
+                <div class="search-bar">
+                    <input type="text" id="searchInput" placeholder="Tìm kiếm phim..." autocomplete="off">
+                    <i class="fas fa-search"></i>
+                    <div class="search-suggestions" id="searchSuggestions"></div>
+                </div>
+                <button id="themeToggle" class="theme-toggle" aria-label="Đổi giao diện">
+                    <i class="fas fa-sun"></i>
+                </button>
             </div>
         </div>
     </header>
@@ -102,6 +107,7 @@
     </div>
 
     <!-- Scripts -->
+    <script src="assets/js/theme.js"></script>
     <script src="https://cdn.plyr.io/3.7.8/plyr.polyfilled.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/hls.js@latest"></script>
     <script src="assets/js/api.js"></script>

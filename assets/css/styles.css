@@ -6,15 +6,27 @@
 }
 
 :root {
-    --bg-color: #020617; /* Very dark blue for background */
-    --surface-color: #0f172a;
+    --bg-color: #020617; /* Slate 950 */
+    --surface-color: #0f172a; /* Slate 900 */
     --surface-light: #1e293b;
-    --accent-color: #e11d48; /* Premium Rose/Red */
-    --accent-glow: rgba(225, 29, 72, 0.4);
     --text-primary: #f8fafc;
     --text-secondary: #94a3b8;
-    --glass-bg: rgba(15, 23, 42, 0.6);
-    --glass-border: rgba(255, 255, 255, 0.08);
+    --accent-color: #38bdf8; /* Sky 400 */
+    --accent-hover: #0284c7; /* Sky 600 */
+    --glass-bg: rgba(15, 23, 42, 0.7);
+    --glass-border: rgba(255, 255, 255, 0.1);
+}
+
+[data-theme="light"] {
+    --bg-color: #f8fafc; /* Slate 50 */
+    --surface-color: #ffffff; /* White */
+    --surface-light: #f1f5f9; /* Slate 100 */
+    --text-primary: #0f172a; /* Slate 900 */
+    --text-secondary: #475569; /* Slate 600 */
+    --accent-color: #0284c7; /* Sky 600 */
+    --accent-hover: #0369a1; /* Sky 700 */
+    --glass-bg: rgba(255, 255, 255, 0.85);
+    --glass-border: rgba(0, 0, 0, 0.1);
 }
 
 body {
@@ -114,9 +126,38 @@ header {
     100% { background-position: 100% 50%; }
 }
 
+.nav-right {
+    display: flex;
+    align-items: center;
+    gap: 15px; /* Space between search bar and theme toggle */
+}
+
 .search-bar {
     position: relative;
     width: 350px;
+}
+
+/* Theme Toggle Button */
+.theme-toggle {
+    background: var(--surface-color);
+    border: 1px solid var(--glass-border);
+    color: var(--text-primary);
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.1rem;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.theme-toggle:hover {
+    color: var(--accent-color);
+    transform: rotate(15deg) scale(1.1);
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
 }
 
 /* Dropdown Menu */
