@@ -793,6 +793,12 @@ header {
     .hero { padding-top: 130px; } /* bù thêm không gian cho navbar 2 dòng */
     .movie-player-section { padding-top: 160px; padding-left: 1rem; padding-right: 1rem; } /* Đẩy video xuống trên mobile */
     .movie-detail-hero { padding-top: 160px; } /* bù thêm không gian cho navbar ở trang chi tiết phim */
-    .movie-detail-container { flex-direction: column; gap: 2rem; align-items: center; }
+    .movie-detail-container { 
+        flex-direction: column; 
+        gap: 2rem; 
+        align-items: center; 
+        padding: 0 1rem; 
+    }
+    .movie-detail-info { width: 100%; }
     .movie-detail-poster { width: 250px; }
 }
