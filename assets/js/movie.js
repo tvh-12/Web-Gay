@@ -269,11 +269,12 @@ function initPlayer() {
         const video = document.getElementById('videoPlayer');
         plyrPlayer = new Plyr(video, {
             controls: [
-                'play-large', 'play', 'progress', 'current-time', 'duration', 
+                'play-large', 'rewind', 'play', 'fast-forward', 'progress', 'current-time', 'duration', 
                 'mute', 'volume', 'captions', 'settings', 'pip', 'airplay', 'fullscreen'
             ],
             settings: ['quality', 'speed'],
-            autoplay: true
+            autoplay: true,
+            seekTime: 10
         });
     }
 }

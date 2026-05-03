@@ -825,18 +825,20 @@ header {
     right: 0 !important;
     width: 100% !important;
     height: 60px !important; /* Cao đúng 60px */
-    background: #0f172a !important; 
+    background: rgba(15, 23, 42, 0.85) !important; /* Trong suốt nhẹ */
+    backdrop-filter: blur(10px); /* Hiệu ứng kính */
+    -webkit-backdrop-filter: blur(10px);
     padding: 0 20px !important;
     transform: none !important; /* Chặn hiệu ứng ẩn/hiện làm bay control */
     opacity: 1 !important; /* Luôn hiển thị */
     visibility: visible !important;
     display: flex !important;
     align-items: center !important;
-    border-top: 1px solid var(--glass-border);
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
 }
 
 .plyr--video .plyr__controls {
-    background: #0f172a !important;
+    background: rgba(15, 23, 42, 0.85) !important;
 }
 
 /* Responsive */
