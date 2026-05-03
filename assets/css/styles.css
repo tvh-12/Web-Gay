@@ -936,27 +936,53 @@ header.scrolled {
     }
     .movie-detail-info { width: 100%; }
     .movie-detail-poster { width: 250px; }
+}
 
-    /* Tối ưu Plyr cho Mobile */
+/* Tối ưu Plyr cho Mobile - Chỉ áp dụng khi xoay dọc (Portrait) */
+@media (max-width: 768px) and (orientation: portrait) {
     .plyr__controls {
-        height: auto !important; /* Xóa fix cứng 60px */
-        flex-wrap: wrap !important; /* Cho phép xuống dòng */
+        height: auto !important; 
+        flex-wrap: wrap !important; 
         padding: 10px !important;
-        justify-content: center !important; /* Căn giữa các nút */
+        justify-content: flex-start !important; 
         border-radius: 12px !important;
     }
     
-    /* Ép thanh Tiến trình (Progress bar) chiếm trọn 1 dòng trên cùng */
+    /* Gắn order cho các phần tử dòng 1 */
+    .plyr__controls > [data-plyr="rewind"] { order: 1 !important; margin-left: 0 !important; }
+    .plyr__controls > [data-plyr="play"] { order: 2 !important; margin-left: 5px !important; }
+    .plyr__controls > [data-plyr="fast-forward"] { order: 3 !important; margin-left: 5px !important; }
+    
     .plyr__controls .plyr__progress {
-        width: 100% !important;
-        flex: 1 1 100% !important;
-        order: -1; /* Luôn đứng đầu */
-        margin-bottom: 10px !important; /* Cách các nút bên dưới */
+        order: 4 !important;
+        flex: 1 1 0% !important; /* Chiếm phần còn lại của dòng 1 */
+        margin-left: 10px !important;
+        min-width: 100px !important; /* Đảm bảo không bị bóp nghẹt */
+        margin-bottom: 0 !important;
     }
+
+    /* Tạo một vách ngăn ảo để bẻ dòng sau thanh Progress */
+    .plyr__controls::after {
+        content: "";
+        width: 100%;
+        order: 5;
+        height: 10px; /* Khoảng cách giữa 2 dòng */
+    }
+
+    /* Gắn order cho các phần tử dòng 2 */
+    .plyr__controls .plyr__time--current { order: 6 !important; margin-left: 0 !important; }
+    .plyr__controls .plyr__time--duration { order: 7 !important; }
+    .plyr__controls > [data-plyr="mute"] { order: 8 !important; margin-left: auto !important; /* Đẩy các nút sau sang phải */ }
+    .plyr__controls .plyr__volume { display: none !important; /* Ẩn thanh kéo âm lượng vì mobile dùng phím cứng */ }
+    .plyr__controls > [data-plyr="captions"] { order: 9 !important; }
+    .plyr__controls > [data-plyr="settings"] { order: 10 !important; }
+    .plyr__controls > [data-plyr="pip"] { order: 11 !important; }
+    .plyr__controls > [data-plyr="airplay"] { order: 12 !important; }
+    .plyr__controls > [data-plyr="fullscreen"] { order: 13 !important; margin-right: 0 !important; }
 
     /* Đẩy video lên cao hơn để không bị controls đè khi rớt dòng */
     .plyr__video-wrapper {
-        bottom: 110px !important; 
+        bottom: 110px !important; /* Cho rộng rãi hơn chút */
     }
     
     /* Thu nhỏ font thời gian và các nút để tránh chật chội */
@@ -964,6 +990,5 @@ header.scrolled {
         font-size: 11px !important;
     }
     .plyr__controls button {
-        padding: 6px !important;
+        padding: 4px 6px !important;
     }
-}
