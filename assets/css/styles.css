@@ -1074,3 +1074,30 @@ header.scrolled {
     color: rgba(255, 255, 255, 0.7) !important;
     text-shadow: 0 1px 4px rgba(0,0,0,0.5);
 }
+
+/* ===== Movie detail metadata text always white (on dark backdrop) ===== */
+.movie-detail-hero .movie-detail-info p,
+.movie-detail-hero .movie-detail-info p strong,
+.movie-detail-hero .movie-detail-info p span {
+    color: rgba(255, 255, 255, 0.9) !important;
+    text-shadow: 0 1px 4px rgba(0,0,0,0.7);
+}
+
+.movie-detail-hero .movie-detail-info p strong {
+    color: #ffffff !important;
+    font-weight: 700;
+}
+
+/* ===== Movie detail meta rows (Nam, Th?i lu?ng, etc.) ===== */
+.movie-detail-hero .movie-detail-meta p,
+.movie-detail-hero .movie-detail-meta p strong,
+.movie-detail-hero .movie-detail-meta p span {
+    color: rgba(255, 255, 255, 0.9) !important;
+    text-shadow: 0 1px 4px rgba(0,0,0,0.7);
+    line-height: 1.8;
+}
+
+.movie-detail-hero .movie-detail-meta p strong {
+    color: #ffffff !important;
+    font-weight: 700;
+}
