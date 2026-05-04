@@ -111,8 +111,13 @@ header.scrolled {
     white-space: nowrap;
     flex: 1;
     text-align: center;
-    pointer-events: none;
+    pointer-events: auto;
+    cursor: pointer;
+    text-decoration: none !important;
     user-select: none;
+}
+.nav-tagline:hover {
+    filter: brightness(1.2);
 }
 
 @keyframes shimmer {
@@ -984,4 +989,5 @@ header.scrolled {
         height: 16px !important;
     }
 }
+
 
