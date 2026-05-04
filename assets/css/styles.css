@@ -1085,13 +1085,23 @@ header.scrolled {
 
 /* Portrait mobile: minimal player controls (Only Play, Progress, Fullscreen) */
 @media (max-width: 768px) and (orientation: portrait) {
-    .plyr__controls > *:not([data-plyr="play"]):not(.plyr__progress):not([data-plyr="fullscreen"]) {
+    /* Hide everything except play, progress, and fullscreen */
+    .plyr__controls > button:not([data-plyr="play"]):not([data-plyr="fullscreen"]),
+    .plyr__controls > .plyr__volume,
+    .plyr__controls > .plyr__time,
+    .plyr__controls > .plyr__menu,
+    .plyr__controls > .plyr__controls__item:not(.plyr__progress):not([data-plyr="play"]):not([data-plyr="fullscreen"]) {
         display: none !important;
     }
     
     .plyr__controls {
         gap: 5px !important;
         padding: 0 8px !important;
+        height: 44px !important;
+    }
+
+    .plyr__progress {
+        margin: 0 5px !important;
     }
 }
 }
@@ -1149,6 +1159,7 @@ header.scrolled {
     color: #fff !important;
     font-weight: 700;
 }
+
 
 
 
