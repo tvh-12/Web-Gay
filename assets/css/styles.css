@@ -1021,25 +1021,7 @@ header.scrolled {
     .movie-detail-poster { width: 160px; }
 }
 
-/* Portrait mobile: minimal player controls */
-@media (max-width: 768px) and (orientation: portrait) {
-    .plyr__controls [data-plyr="mute"],
-    .plyr__controls .plyr__volume,
-    .plyr__controls .plyr__time,
-    .plyr__controls [data-plyr="captions"],
-    .plyr__controls [data-plyr="settings"],
-    .plyr__controls [data-plyr="pip"],
-    .plyr__controls [data-plyr="airplay"],
-    .plyr__controls [data-plyr="rewind"],
-    .plyr__controls [data-plyr="fast-forward"] {
-        display: none !important;
-    }
-    
-    .plyr__controls {
-        gap: 5px !important;
-        padding: 0 12px !important;
-    }
-}
+
 
 /* Landscape mobile: full controls */
 @media (max-width: 1024px) and (orientation: landscape) {
@@ -1109,4 +1091,23 @@ header.scrolled {
 
 
 
+
+
+/* FORCED MOBILE PORTRAIT OVERRIDE - DO NOT REMOVE */
+@media (max-width: 768px) and (orientation: portrait) {
+    .plyr__controls .plyr__time, 
+    .plyr__controls .plyr__time--current, 
+    .plyr__controls .plyr__time--duration,
+    .plyr__controls .plyr__volume,
+    .plyr__controls [data-plyr="mute"],
+    .plyr__controls [data-plyr="settings"],
+    .plyr__controls [data-plyr="pip"] {
+        display: none !important;
+        width: 0 !important;
+        visibility: hidden !important;
+    }
+    .plyr__controls .plyr__progress {
+        margin: 0 15px !important;
+    }
+}
 
