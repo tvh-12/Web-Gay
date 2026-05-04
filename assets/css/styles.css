@@ -886,7 +886,7 @@ header.scrolled {
     border: 1px solid rgba(255, 255, 255, 0.1) !important;
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5) !important;
     flex-wrap: nowrap !important;
-    overflow: hidden !important;
+    overflow: visible !important;
 }
 
 .plyr--video .plyr__controls {
@@ -907,7 +907,12 @@ header.scrolled {
 .plyr__controls .plyr__progress {
     flex: 1 1 auto !important;
     min-width: 0 !important;
-    margin: 0 4px !important;
+    margin: 0 12px !important;
+}
+
+.plyr__controls .plyr__time {
+    margin-left: 8px !important;
+    font-size: 0.85rem !important;
 }
 
 
