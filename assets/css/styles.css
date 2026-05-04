@@ -1037,14 +1037,22 @@ header.scrolled {
 }
 
 /* Landscape mobile: full controls */
-@media (max-width: 900px) and (orientation: landscape) {
+@media (max-width: 1024px) and (orientation: landscape) {
     .plyr__controls > [data-plyr="rewind"],
     .plyr__controls > [data-plyr="fast-forward"],
     .plyr__controls > [data-plyr="mute"],
     .plyr__controls .plyr__volume,
-    .plyr__controls .plyr__time--current,
-    .plyr__controls .plyr__time--duration {
+    .plyr__controls .plyr__time,
+    .plyr__controls > [data-plyr="captions"],
+    .plyr__controls > [data-plyr="settings"],
+    .plyr__controls > [data-plyr="pip"],
+    .plyr__controls > [data-plyr="airplay"] {
         display: flex !important;
+    }
+    
+    .plyr__controls {
+        height: 48px !important;
+        padding: 0 15px !important;
     }
 }
 

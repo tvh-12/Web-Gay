@@ -264,16 +264,14 @@ function initPlayer() {
     if (!plyrPlayer) {
         const video = document.getElementById('videoPlayer');
         
-        // Cấu hình phím điều khiển tối giản cho Mobile
-        const isMobile = window.innerWidth <= 768;
-        const mobileControls = ['play-large', 'play', 'progress', 'fullscreen'];
-        const desktopControls = [
+        // Luôn khởi tạo đầy đủ phím để CSS có thể ẩn/hiện linh hoạt theo hướng màn hình
+        const allControls = [
             'play-large', 'rewind', 'play', 'fast-forward', 'progress', 'current-time', 'duration', 
             'mute', 'volume', 'captions', 'settings', 'pip', 'airplay', 'fullscreen'
         ];
 
         plyrPlayer = new Plyr(video, {
-            controls: isMobile ? mobileControls : desktopControls,
+            controls: allControls,
             settings: ['quality', 'speed'],
             autoplay: true,
             seekTime: 10,
