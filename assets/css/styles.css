@@ -1083,20 +1083,17 @@ header.scrolled {
     .movie-detail-poster { width: 160px; }
 }
 
-/* Portrait mobile: minimal player controls */
+/* Portrait mobile: minimal player controls (Only Play, Progress, Fullscreen) */
 @media (max-width: 768px) and (orientation: portrait) {
-    .plyr__controls > [data-plyr="rewind"],
-    .plyr__controls > [data-plyr="fast-forward"],
-    .plyr__controls > [data-plyr="mute"],
-    .plyr__controls .plyr__volume,
-    .plyr__controls .plyr__time--current,
-    .plyr__controls .plyr__time--duration,
-    .plyr__controls > [data-plyr="captions"],
-    .plyr__controls > [data-plyr="settings"],
-    .plyr__controls > [data-plyr="pip"],
-    .plyr__controls > [data-plyr="airplay"] {
+    .plyr__controls > *:not([data-plyr="play"]):not(.plyr__progress):not([data-plyr="fullscreen"]) {
         display: none !important;
     }
+    
+    .plyr__controls {
+        gap: 5px !important;
+        padding: 0 8px !important;
+    }
+}
 }
 
 /* Landscape mobile: full controls */
@@ -1152,6 +1149,7 @@ header.scrolled {
     color: #fff !important;
     font-weight: 700;
 }
+
 
 
 
