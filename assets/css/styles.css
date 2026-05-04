@@ -879,7 +879,7 @@ header.scrolled {
     top: 0 !important;
     left: 0 !important;
     right: 0 !important;
-    bottom: 80px !important; /* Chừa không gian rộng hơn cho floating bar */
+    bottom: 0 !important;
     height: auto !important;
     background: #000 !important;
 }
@@ -887,633 +887,139 @@ header.scrolled {
 .plyr video {
     width: 100% !important;
     height: 100% !important;
-    object-fit: contain !important; /* Đảm bảo video không bị cắt xén, luôn full và có viền đen nếu cần */
+    object-fit: contain !important;
 }
 
+/* ===== Minimal single-row pill control bar ===== */
 .plyr__controls {
-    position: absolute !important; 
-    bottom: 10px !important; /* Nổi lên cách đáy 10px */
-    left: 10px !important; /* Cách lề trái 10px */
-    right: 10px !important; /* Cách lề phải 10px */
+    position: absolute !important;
+    bottom: 8px !important;
+    left: 8px !important;
+    right: 8px !important;
     width: auto !important;
-    height: 60px !important; 
-    border-radius: 16px !important; /* Bo góc tròn như hình viên thuốc */
-    background: rgba(15, 23, 42, 0.6) !important; /* Kính mờ thanh lịch */
-    backdrop-filter: blur(16px); 
-    -webkit-backdrop-filter: blur(16px);
-    padding: 0 20px !important;
-
-    display: flex;
+    height: 46px !important;
+    border-radius: 23px !important;
+    background: rgba(10, 15, 30, 0.78) !important;
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    padding: 0 10px !important;
+    display: flex !important;
     align-items: center !important;
+    gap: 2px !important;
     border: 1px solid rgba(255, 255, 255, 0.1) !important;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5), 0 0 15px rgba(14, 165, 233, 0.2) !important; /* Đổ bóng phát sáng nhẹ màu xanh */
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5) !important;
+    flex-wrap: nowrap !important;
+    overflow: hidden !important;
 }
 
 .plyr--video .plyr__controls {
-    background: rgba(15, 23, 42, 0.6) !important;
+    background: rgba(10, 15, 30, 0.78) !important;
 }
 
-/* Bo tròn các nút bên trong */
 .plyr__controls button {
-    border-radius: 10px !important;
+    border-radius: 50% !important;
+    padding: 5px !important;
+    flex-shrink: 0;
 }
+
+.plyr__controls button svg {
+    width: 18px !important;
+    height: 18px !important;
+}
+
+.plyr__controls .plyr__progress {
+    flex: 1 1 auto !important;
+    min-width: 0 !important;
+    margin: 0 4px !important;
+}
+
+
 
 /* Responsive */
 @media (max-width: 768px) {
-    .nav-container { 
+    .nav-container {
         padding: 0.5rem 0.75rem;
         display: flex;
         flex-wrap: wrap;
         align-items: center;
-        justify-content: space-between; /* This should push Logo/Category to ends */
+        justify-content: space-between;
         gap: 0.5rem;
     }
-    
-    .logo { 
-        order: 1;
-        flex: 0 1 auto;
-    }
+    .logo { order: 1; flex: 0 1 auto; }
     .logo img { height: 95px !important; }
-    
-    .nav-right {
-        display: contents;
-    }
-    
+    .nav-right { display: contents; }
     .theme-toggle {
         order: 2;
-        flex: 1 1 auto; /* Middle spacer */
+        flex: 1 1 auto;
         display: flex;
         justify-content: center;
         width: 38px !important;
         height: 38px !important;
     }
-    
-    .nav-menu { 
-        order: 3;
-        flex: 0 1 auto;
-        display: flex;
-        justify-content: flex-end;
-        margin-left: 0;
-    }
-    
+    .nav-menu { order: 3; flex: 0 0 auto; margin-left: 0; }
     .dropbtn {
         padding: 0.3rem 0.6rem !important;
         font-size: 0.75rem !important;
         height: 34px !important;
     }
+    .search-bar { order: 4; width: 100% !important; margin-top: 5px; }
+    .search-bar input { height: 40px; text-align: center; border-radius: 20px !important; }
+    .dropdown-content { top: 85px; z-index: 10000; }
 
-    .search-bar { 
-        order: 4;
-        width: 100% !important; 
-        max-width: 100%;
-        margin-top: 5px;
-    }
-    .search-bar input { 
-        height: 40px; 
-        text-align: center;
-        border-radius: 20px !important;
+    /* Push player down so it does not touch navbar */
+    .movie-player-section {
+        padding-top: 185px !important;
+        padding-left: 0.5rem;
+        padding-right: 0.5rem;
     }
 
-    .dropdown-content {
-        top: 85px;
-        z-index: 10000;
-    }
-
+    /* Hero content centered */
     .hero-content {
         display: flex !important;
         flex-direction: column !important;
         align-items: center !important;
         text-align: center !important;
     }
+    .hero-title { font-size: 1.8rem !important; line-height: 1.3 !important; margin-bottom: 0.8rem !important; }
+    .hero-desc { text-align: center !important; margin: 0 auto 1.5rem auto !important; }
+    .hero-tags { justify-content: center !important; }
+    .btn-primary { display: inline-flex !important; margin: 0 auto !important; }
+    .hero { padding-top: 140px !important; min-height: 80vh !important; align-items: center !important; }
 
-    .hero-title {
-        font-size: 1.8rem !important;
-        line-height: 1.3 !important;
-        margin-bottom: 0.8rem !important;
-    }
-    
-    .hero-desc {
-        text-align: center !important;
-        margin: 0 auto 1.5rem auto !important;
-    }
-
-    .hero-tags {
-        justify-content: center !important;
-    }
-
-    .btn-primary {
-        display: inline-flex !important;
-        margin: 0 auto !important;
-    }
-
-    .hero { 
-        padding-top: 140px !important; 
-        min-height: 80vh !important;
-        align-items: center !important;
-    }
-}
-
-/* Smaller Category Button pushed to the far right */
-    .dropbtn {
-        padding: 0.3rem 0.6rem !important;
-        font-size: 0.75rem !important;
-        height: 34px !important;
-        margin-right: 0 !important;
-    }
-
-    .search-bar { 
-        order: 4;
-        width: 100% !important; 
-        max-width: 100%;
-        margin-top: 5px;
-    }
-    .search-bar input { 
-        height: 40px; 
-        text-align: center;
-        border-radius: 20px !important;
-    }
-
-    .dropdown-content {
-        top: 85px;
-        z-index: 10000;
-    }
-
-    /* Centering Hero Content */
-    .hero-content {
-        display: flex !important;
-        flex-direction: column !important;
-        align-items: center !important;
-        text-align: center !important;
-    }
-
-    .hero-title {
-        font-size: 1.8rem !important;
-        line-height: 1.3 !important;
-        margin-bottom: 0.8rem !important;
-        text-align: center !important;
-    }
-    
-    .hero-desc {
-        text-align: center !important;
-        margin: 0 auto 1.5rem auto !important;
-    }
-
-    .hero-tags {
-        justify-content: center !important;
-    }
-
-    .btn-primary {
-        display: inline-flex !important;
-        margin: 0 auto !important;
-        justify-content: center;
-    }
-
-    .hero { 
-        padding-top: 140px !important; 
-        min-height: 80vh !important;
-        align-items: center !important;
-    }
-}
-
-/* Bigger Logo */
-    
-    /* Make nav-right children direct flex items of nav-container */
-    .nav-right {
-        display: contents;
-    }
-    
-    .theme-toggle {
-        order: 2;
-        flex: 0 0 auto;
-        margin-left: auto; /* Push buttons to the right side of the logo */
-        width: 36px;
-        height: 36px;
-        font-size: 1rem;
-        box-shadow: none !important;
-    }
-    
-    .nav-menu { 
-        order: 3;
-        flex: 0 0 auto;
-        margin-left: 5px;
-    }
-    
-    .search-bar { 
-        order: 4;
-        width: 100% !important; 
-        max-width: 100%;
-        margin-top: 5px;
-    }
-    .search-bar input { 
-        height: 40px; 
-        text-align: center;
-        border-radius: 20px !important;
-    }
-
-    /* Smaller Category Button */
-    .dropbtn {
-        padding: 0.3rem 0.6rem !important;
-        font-size: 0.75rem !important;
-        height: 34px !important;
-    }
-    
-    .dropdown-content {
-        top: 85px;
-        z-index: 10000;
-    }
-
-    /* Centering Hero Content */
-    .hero-content {
-        display: flex !important;
-        flex-direction: column !important;
-        align-items: center !important;
-        text-align: center !important;
-    }
-
-    .hero-title {
-        font-size: 1.8rem !important;
-        line-height: 1.3 !important;
-        margin-bottom: 0.8rem !important;
-        text-align: center !important;
-    }
-    
-    .hero-desc {
-        text-align: center !important;
-        margin: 0 auto 1.5rem auto !important;
-    }
-
-    .hero-tags {
-        justify-content: center !important;
-    }
-
-    /* Center the Watch Button */
-    .btn-primary {
-        display: inline-flex !important;
-        margin: 0 auto !important;
-        justify-content: center;
-    }
-
-    .hero { 
-        padding-top: 140px !important; 
-        min-height: 80vh !important;
-        align-items: center !important;
-    }
-    
-    .movie-player-section { padding-top: 140px; }
-}
-
-/* Bigger logo */
-    
-    .nav-menu { 
-        order: 3;
-        flex: 0 0 auto;
-        margin-left: 5px;
-    }
-    
-    .nav-right {
-        order: 2; /* Move next to logo/category row */
-        width: auto !important;
-        flex-direction: row !important; /* Keep items in row if possible */
-        justify-content: flex-end;
-        gap: 8px !important;
-        margin-top: 0 !important;
-    }
-    
-    /* Center the search bar on its own row below logo row */
-    .search-bar { 
-        order: 4;
-        width: 100% !important; 
-        max-width: 100%;
-        margin: 0.25rem auto 0 auto !important;
-    }
-    .search-bar input { 
-        height: 42px; 
-        text-align: center;
-        border-radius: 21px !important;
-    }
-
-    /* Smaller Category Button */
-    .dropbtn {
-        padding: 0.3rem 0.6rem !important;
-        font-size: 0.75rem !important;
-        height: 32px !important;
-    }
-    
-    /* Center Theme Toggle next to Category */
-    .theme-toggle {
-        width: 32px;
-        height: 32px;
-        font-size: 0.9rem;
-    }
-
-    .dropdown-content {
-        top: 85px;
-        z-index: 10000;
-    }
-
-    /* Fix hero layout for mobile */
-    .hero-content {
-        display: flex;
-        flex-direction: column;
-        align-items: center; /* Center everything in hero */
-        text-align: center;
-    }
-
-    .hero-title {
-        font-size: 1.8rem !important;
-        line-height: 1.3 !important;
-        margin-bottom: 1rem;
-    }
-    
-    /* Center the Xem Ngay button */
-    .btn-primary {
-        margin: 0 auto;
-        display: inline-flex;
-    }
-
-    .hero { 
-        padding-top: 150px !important; /* Back to shorter padding since Row 1 is compact */
-        min-height: 75vh !important;
-        align-items: center;
-    }
-    
-    .movie-player-section { padding-top: 150px; }
-}
-
-/* Smaller Category Button */
-    .dropbtn {
-        padding: 0.3rem 0.7rem !important;
-        font-size: 0.75rem !important;
-        border-radius: 6px !important;
-        height: 32px !important;
-        display: flex;
-        align-items: center;
-        gap: 4px;
-    }
-    
-    /* Dropdown content improvement for mobile */
-    .dropdown-content {
-        position: fixed;
-        top: 80px;
-        left: 50% !important;
-        transform: translateX(-50%) !important;
-        width: 92% !important;
-        max-width: 320px;
-        grid-template-columns: repeat(2, 1fr);
-        padding: 0.75rem !important;
-        gap: 0.5rem !important;
-        z-index: 9999;
-        display: none;
-        box-shadow: 0 10px 40px rgba(0,0,0,0.4) !important;
-    }
-    .dropdown.show .dropdown-content {
-        display: grid !important;
-    }
-    .dropdown-content a {
-        padding: 0.6rem !important;
-        text-align: center;
-        background: var(--surface-light);
-        border-radius: 6px;
-        font-size: 0.85rem;
-    }
-
-    /* Hide tagline on mobile */
-    .tagline-container { display: none !important; }
-
-    /* Centered Row for Nav Right components */
-    .nav-right {
-        width: 100% !important;
-        flex-direction: column !important;
-        align-items: center !important;
-        gap: 0.8rem !important;
-        margin-top: 0.2rem;
-    }
-
-    /* Center Theme Toggle */
-    .theme-toggle {
-        margin: 0 auto;
-        width: 40px;
-        height: 40px;
-    }
-
-    /* Center Search Bar */
-    .search-bar { 
-        width: 100% !important; 
-        max-width: 450px;
-        margin: 0 auto;
-    }
-    .search-bar input { 
-        height: 44px; 
-        font-size: 0.95rem; 
-        text-align: center;
-        border-radius: 22px !important;
-    }
-
-    /* Fix hero title size for mobile */
-    .hero-title {
-        font-size: 1.8rem !important;
-        line-height: 1.3 !important;
-        text-align: center;
-    }
-    .hero { 
-        padding-top: 230px !important; /* Space for 3-row header */
-        min-height: 80vh !important;
-    }
-    .movie-player-section { padding-top: 240px; }
-}
-
-/* First Row: Logo and Category Button */
-    .nav-container > *:not(.tagline-container) {
-        width: 100%;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-    }
-    
-    /* Layout for Top Row (Logo & Category) */
-    .logo { 
-        flex: 1;
-        justify-content: flex-start !important; 
-    }
-    .logo img { height: 60px; }
-    
-    .nav-menu { 
-        flex: 1;
-        justify-content: flex-end !important; 
-    }
-    
-    /* Smaller Category Button */
-    .dropbtn {
-        padding: 0.4rem 0.8rem !important;
-        font-size: 0.85rem !important;
-        border-radius: 8px !important;
-    }
-    
-    /* Fix Dropdown being cut off - centered and wide enough */
-    .dropdown-content {
-        position: fixed; /* Use fixed to avoid being cut off by parent overflow */
-        top: 70px;
-        left: 50% !important;
-        transform: translateX(-50%) !important;
-        width: 90% !important;
-        max-width: 300px;
-        grid-template-columns: repeat(2, 1fr); /* Two columns for categories */
-        display: none; /* Controlled by .show class */
-    }
-    .dropdown.show .dropdown-content {
-        display: grid !important;
-    }
-
-    /* Hide tagline on mobile */
-    .tagline-container { display: none !important; }
-
-    /* Center Nav Right components */
-    .nav-right {
-        flex-direction: column;
-        gap: 0.75rem;
-        width: 100% !important;
-    }
-
-    /* Center Theme Toggle */
-    .theme-toggle {
-        order: 1;
-        margin: 0 auto;
-    }
-
-    /* Center Search Bar */
-    .search-bar { 
-        width: 100% !important; 
-        max-width: 400px;
-        order: 2;
-        margin: 0 auto;
-    }
-    .search-bar input { 
-        height: 42px; 
-        font-size: 0.9rem; 
-        text-align: center; /* Center placeholder/text */
-    }
-
-    /* Fix hero title size for mobile */
-    .hero-title {
-        font-size: 2rem !important;
-        line-height: 1.3 !important;
-        text-align: center;
-    }
-    
-    .hero { 
-        padding-top: 220px !important; /* Adjusted for taller 3-row navbar */
-        min-height: 80vh !important;
-    }
-}
-
-/* Hide tagline on mobile to save space as requested */
-    .tagline-container { display: none !important; }
-
-    .nav-right { gap: 10px; }
-
-    .search-bar { 
-        display: block; 
-        width: 100%; 
-        order: 4;
-        margin-top: 0.5rem;
-    }
-    .search-bar input { height: 40px; font-size: 0.9rem; }
-
-    /* Fix hero title size for mobile */
-    .hero-title {
-        font-size: 2.2rem !important;
-        line-height: 1.25 !important;
-        margin-bottom: 1rem;
-        text-align: center;
-    }
-    .hero-desc {
-        font-size: 1rem;
-        text-align: center;
-        margin: 0 auto 1.5rem auto;
-    }
-    .hero-tags {
-        justify-content: center;
-    }
-    
-    .hero { 
-        padding-top: 150px !important; 
-        min-height: 80vh !important;
-        align-items: center; /* Center content on mobile for better look */
-    }
-    
-    .movie-player-section { padding-top: 160px; }
-    
+    /* Movie detail */
     .movie-detail-hero { padding-top: 120px; }
-    .movie-detail-container { 
-        flex-direction: column; 
-        gap: 1.5rem; 
-        align-items: center; 
-        text-align: center;
-    }
+    .movie-detail-container { flex-direction: column; gap: 1.5rem; align-items: center; text-align: center; }
     .movie-detail-info { width: 100%; display: flex; flex-direction: column; align-items: center; }
     .movie-detail-poster { width: 180px; }
 }
 
-
-/* Tối ưu Plyr cho Mobile - Chỉ áp dụng khi xoay dọc (Portrait) */
+/* Portrait mobile: show only Play, Progress, Fullscreen */
 @media (max-width: 768px) and (orientation: portrait) {
-    .plyr__controls {
-        height: auto !important; 
-        flex-wrap: nowrap !important; /* Ép buộc chỉ hiển thị 1 dòng */
-        padding: 5px 10px !important;
-        justify-content: flex-start !important; 
-        border-radius: 12px !important;
-    }
-    
-    /* Gắn order cho các phần tử được phép hiển thị */
-    .plyr__controls > [data-plyr="rewind"] { order: 1 !important; margin-left: 0 !important; }
-    .plyr__controls > [data-plyr="play"] { order: 2 !important; margin-left: 2px !important; }
-    .plyr__controls > [data-plyr="fast-forward"] { order: 3 !important; margin-left: 2px !important; }
-    
-    .plyr__controls .plyr__progress {
-        order: 4 !important;
-        flex: 1 1 0% !important; /* Chiếm hết khoảng trống còn lại */
-        margin-left: 10px !important;
-        margin-right: 10px !important;
-        min-width: 50px !important; /* Cho phép co ngắn lại */
-        margin-bottom: 0 !important;
-    }
-
-    .plyr__controls > [data-plyr="fullscreen"] { order: 5 !important; margin-right: 0 !important; }
-
-    /* Ẩn tất cả các nút không cần thiết ở chế độ dọc để nhường chỗ */
-    .plyr__controls::after,
-    .plyr__controls .plyr__time--current,
-    .plyr__controls .plyr__time--duration,
+    .plyr__controls > [data-plyr="rewind"],
+    .plyr__controls > [data-plyr="fast-forward"],
     .plyr__controls > [data-plyr="mute"],
     .plyr__controls .plyr__volume,
+    .plyr__controls .plyr__time--current,
+    .plyr__controls .plyr__time--duration,
     .plyr__controls > [data-plyr="captions"],
     .plyr__controls > [data-plyr="settings"],
     .plyr__controls > [data-plyr="pip"],
     .plyr__controls > [data-plyr="airplay"] {
         display: none !important;
     }
-
-    /* Đẩy video lên trên để nhường không gian cho control bar */
-    .plyr__video-wrapper {
-        bottom: 80px !important; 
-    }
-    
-    /* Thu nhỏ padding các nút để vừa vặn hơn trên 1 dòng */
-    .plyr__controls button {
-        padding: 4px 5px !important;
-    }
-    .plyr__controls button svg {
-        width: 16px !important;
-        height: 16px !important;
-    }
 }
 
-
-
-
-
-
+/* Landscape mobile/tablet: show all controls */
+@media (max-width: 900px) and (orientation: landscape) {
+    .plyr__controls > [data-plyr="rewind"],
+    .plyr__controls > [data-plyr="fast-forward"],
+    .plyr__controls > [data-plyr="mute"],
+    .plyr__controls .plyr__volume,
+    .plyr__controls .plyr__time--current,
+    .plyr__controls .plyr__time--duration {
+        display: flex !important;
+    }
+}
 
 /* Hero Tag Variants */
 .hero-tags span.tag-quality {
@@ -1534,9 +1040,6 @@ header.scrolled {
     color: #d8b4fe;
 }
 
-
-
-
 /* ===== Text in Hero/Detail areas always on dark backdrop ===== */
 .hero .hero-desc,
 .movie-detail-hero .hero-desc {
@@ -1550,40 +1053,20 @@ header.scrolled {
     text-shadow: 0 1px 4px rgba(0,0,0,0.5);
 }
 
-/* ===== Movie detail metadata text always white (on dark backdrop) ===== */
+/* ===== Movie detail meta rows always white on dark backdrop ===== */
+.movie-detail-hero .movie-detail-meta p,
+.movie-detail-hero .movie-detail-meta p strong,
+.movie-detail-hero .movie-detail-meta p span,
 .movie-detail-hero .movie-detail-info p,
 .movie-detail-hero .movie-detail-info p strong,
 .movie-detail-hero .movie-detail-info p span {
     color: rgba(255, 255, 255, 0.9) !important;
     text-shadow: 0 1px 4px rgba(0,0,0,0.7);
+    line-height: 1.8;
 }
 
+.movie-detail-hero .movie-detail-meta p strong,
 .movie-detail-hero .movie-detail-info p strong {
     color: #ffffff !important;
     font-weight: 700;
 }
-
-/* ===== Movie detail meta rows (Nam, Th?i lu?ng, etc.) ===== */
-.movie-detail-hero .movie-detail-meta p,
-.movie-detail-hero .movie-detail-meta p strong,
-.movie-detail-hero .movie-detail-meta p span {
-    color: rgba(255, 255, 255, 0.9) !important;
-    text-shadow: 0 1px 4px rgba(0,0,0,0.7);
-    line-height: 1.8;
-}
-
-.movie-detail-hero .movie-detail-meta p strong {
-    color: #ffffff !important;
-    font-weight: 700;
-}
-
-
-
-
-
-
-
-
-
-
-
