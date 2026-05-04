@@ -1,37 +1,50 @@
 document.addEventListener('DOMContentLoaded', () => {
-    const greetingTagline = document.getElementById('greetingTagline');
-    if (!greetingTagline) return;
+    const el = document.getElementById('greetingTagline');
+    if (!el) return;
 
     const greetings = [
-        { text: "Xin Chào Gayer !", color: "rgb(255, 0, 0)" },       // Tiếng Việt - Đỏ
-        { text: "Hello Gayer !", color: "rgb(255, 127, 0)" },        // Tiếng Anh - Cam
-        { text: "你好，给友 !", color: "rgb(255, 255, 0)" },           // Tiếng Trung - Vàng
-        { text: "नमस्ते, गे दोस्त !", color: "rgb(0, 255, 0)" },         // Tiếng Hindi - Xanh lá
-        { text: "¡Hola, gay !", color: "rgb(0, 0, 255)" },           // Tiếng Tây Ban Nha - Xanh dương
-        { text: "Salut, gay !", color: "rgb(148, 0, 211)" },         // Tiếng Pháp - Tím
-        { text: "Привет, гей !", color: "rgb(255, 0, 255)" }         // Tiếng Nga - Hồng cánh sen
+        { text: "Xin Chào Gayer !",    color: "#ff3b5c" },   // Việt   – Đỏ hồng
+        { text: "Hello Gayer !",        color: "#ff8c00" },   // Anh    – Cam
+        { text: "你好，给友 !",           color: "#f0c030" },   // Trung  – Vàng
+        { text: "नमस्ते, गे दोस्त !",  color: "#4ade80" },   // Hindi  – Xanh lá
+        { text: "¡Hola, gay !",         color: "#38bdf8" },   // TBN    – Xanh da trời
+        { text: "Salut, gay !",         color: "#a78bfa" },   // Pháp   – Tím
+        { text: "Привет, гей !",        color: "#f472b6" },   // Nga    – Hồng
     ];
 
-    let currentIndex = 0;
+    let idx = 0;
+
+    // Ensure CSS transition is applied
+    el.style.transition = "opacity 0.5s ease, transform 0.5s ease, color 0.5s ease, text-shadow 0.5s ease";
+
+    function applyGreeting(g) {
+        el.style.color       = g.color;
+        el.style.textShadow  = `0 0 16px ${g.color}88, 0 0 6px ${g.color}55`;
+    }
+
+    // Apply first greeting immediately (no transition on load)
+    applyGreeting(greetings[0]);
 
     setInterval(() => {
-        // Fade out
-        greetingTagline.style.opacity = 0;
-        
+        // Step 1 – fade out + slide up
+        el.style.opacity   = "0";
+        el.style.transform = "translateY(-6px)";
+
         setTimeout(() => {
-            // Chuyển sang câu chào tiếp theo
-            currentIndex = (currentIndex + 1) % greetings.length;
-            const nextGreeting = greetings[currentIndex];
-            
-            greetingTagline.textContent = nextGreeting.text;
-            // Thay đổi màu sắc
-            greetingTagline.style.color = nextGreeting.color;
-            // Thêm hiệu ứng glow nhẹ
-            const glowColor = nextGreeting.color.replace('rgb', 'rgba').replace(')', ', 0.5)');
-            greetingTagline.style.textShadow = `0 0 15px ${glowColor}`;
-            
-            // Fade in
-            greetingTagline.style.opacity = 1;
-        }, 500); // Đợi 0.5s cho hiệu ứng fade out hoàn tất
-    }, 4000); // Lặp lại mỗi 4 giây
+            // Step 2 – swap text & colour while invisible
+            idx = (idx + 1) % greetings.length;
+            applyGreeting(greetings[idx]);
+            el.textContent   = greetings[idx].text;
+            el.style.transform = "translateY(6px)";   // reset below
+
+            // Step 3 – fade in + slide up to neutral
+            requestAnimationFrame(() => {
+                requestAnimationFrame(() => {
+                    el.style.opacity   = "1";
+                    el.style.transform = "translateY(0)";
+                });
+            });
+        }, 520); // slightly longer than the 0.5s CSS transition
+
+    }, 4000); // rotate every 4 s
 });
