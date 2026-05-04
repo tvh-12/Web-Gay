@@ -18,15 +18,15 @@
 }
 
 [data-theme="light"] {
-    --bg-color: #f8fafc; /* Slate 50 */
-    --surface-color: #ffffff; /* White */
-    --surface-light: #f1f5f9; /* Slate 100 */
-    --text-primary: #0f172a; /* Slate 900 */
-    --text-secondary: #475569; /* Slate 600 */
+    --bg-color: #fdf8f0;       /* Kem sua am ap */
+    --surface-color: #fffbf5;  /* Trang sua nhe */
+    --surface-light: #f5efe6;  /* Kem cat nhat */
+    --text-primary: #1c1208;   /* Nau den, de doc */
+    --text-secondary: #6b5c45; /* Nau am */
     --accent-color: #0284c7; /* Sky 600 */
     --accent-hover: #0369a1; /* Sky 700 */
-    --glass-bg: rgba(255, 255, 255, 0.85);
-    --glass-border: rgba(0, 0, 0, 0.1);
+    --glass-bg: rgba(253, 248, 240, 0.88);
+    --glass-border: rgba(139, 115, 85, 0.15);
 }
 
 body {
@@ -1058,5 +1058,6 @@ header.scrolled {
     border-color: rgba(168,85,247,0.5);
     color: #d8b4fe;
 }
+
 
 
