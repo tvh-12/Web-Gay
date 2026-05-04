@@ -463,7 +463,7 @@ header.scrolled {
 }
 
 .hero-title {
-    font-family: 'Nunito', 'Inter', sans-serif;
+    font-family: 'Inter', 'Be Vietnam Pro', sans-serif;
     font-size: 4.5rem;
     font-weight: 900;
     line-height: 1.45;
@@ -1110,4 +1110,5 @@ header.scrolled {
         margin: 0 15px !important;
     }
 }
+
 
