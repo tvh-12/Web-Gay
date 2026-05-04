@@ -79,7 +79,7 @@ header.scrolled {
     max-width: 1400px;
     margin: 0 auto;
     padding: 0 2rem;
-    height: 76px;
+    height: 60px;
     display: flex;
     align-items: center;
     gap: 1.25rem;
@@ -1080,3 +1080,4 @@ header.scrolled {
     color: #fff !important;
     font-weight: 700;
 }
+
