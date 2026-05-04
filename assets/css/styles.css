@@ -99,6 +99,12 @@ header.scrolled {
 }
 
 /* Tagline quý phái giữa navbar */
+.tagline-container {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
 .nav-tagline {
     font-family: 'Playfair Display', Georgia, serif;
     font-style: italic;
@@ -109,8 +115,6 @@ header.scrolled {
     transition: opacity 0.5s ease, color 0.5s ease, text-shadow 0.5s ease;
     letter-spacing: 0.3px;
     white-space: nowrap;
-    flex: 1;
-    text-align: center;
     pointer-events: auto;
     cursor: pointer;
     text-decoration: none !important;
@@ -907,7 +911,27 @@ header.scrolled {
     .logo { font-size: 1.5rem; }
     .logo img { height: 100px; }
     .nav-menu { margin-left: 0; }
-    .nav-tagline { display: none; }
+    .tagline-container {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.nav-tagline {
+    font-family: 'Playfair Display', Georgia, serif;
+    font-style: italic;
+    font-weight: 600;
+    font-size: 1.25rem;
+    color: rgb(255, 0, 0);
+    text-shadow: 0 0 15px rgba(255, 0, 0, 0.5);
+    transition: opacity 0.5s ease, color 0.5s ease, text-shadow 0.5s ease;
+    letter-spacing: 0.3px;
+    white-space: nowrap;
+    pointer-events: auto;
+    cursor: pointer;
+    text-decoration: none !important;
+    user-select: none;
+}
     .search-bar { 
         display: block; 
         width: 100%; 
@@ -989,5 +1013,6 @@ header.scrolled {
         height: 16px !important;
     }
 }
+
 
 
