@@ -914,83 +914,86 @@ header.scrolled {
 
 /* Responsive */
 @media (max-width: 768px) {
-    /* Navbar: single compact row */
+    /* Navbar: single compact row (One-line optimization) */
     .nav-container {
-        height: auto;
-        padding: 0.5rem 0.75rem;
-        flex-wrap: wrap;
-        gap: 0.5rem;
-        justify-content: space-between;
+        height: 70px !important;
+        padding: 0 0.5rem !important;
+        display: flex !important;
+        flex-direction: row !important;
+        flex-wrap: nowrap !important;
+        align-items: center !important;
+        justify-content: space-between !important;
+        gap: 5px !important;
     }
 
-    /* Row 1: Logo (left) | Theme (center-ish) | Genre (right) */
     .logo {
-        order: 1;
-        flex: 0 0 auto;
+        flex: 0 0 auto !important;
+        order: 1 !important;
     }
-    .logo img { height: 70px !important; }
+    .logo img { height: 42px !important; }
 
-    /* Hide tagline on mobile */
     .tagline-container { display: none !important; }
 
     .nav-right {
-        order: 2;
-        flex: 1 1 auto;
-        display: flex;
-        justify-content: center;
-        gap: 8px;
+        flex: 1 !important;
+        order: 2 !important;
+        display: flex !important;
+        align-items: center !important;
+        gap: 5px !important;
+        min-width: 0;
     }
 
-    /* Search fills its own row below */
     .search-bar {
-        order: 3;
-        width: 100% !important;
-        flex: 0 0 100%;
+        flex: 1 !important;
+        width: auto !important;
+        min-width: 0 !important;
     }
     .search-bar input {
-        height: 40px;
-        font-size: 0.9rem;
-        text-align: left;
-        border-radius: 20px !important;
+        height: 34px !important;
+        padding: 0 25px 0 10px !important;
+        font-size: 0.8rem !important;
+        border-radius: 17px !important;
     }
-
-    .nav-menu {
-        order: 2;
-        flex: 0 0 auto;
+    .search-bar i {
+        right: 10px !important;
+        font-size: 0.8rem !important;
     }
 
     .theme-toggle {
-        width: 38px !important;
-        height: 38px !important;
-        font-size: 1rem !important;
+        flex: 0 0 auto !important;
+        width: 34px !important;
+        height: 34px !important;
+        font-size: 0.9rem !important;
+    }
+
+    .nav-menu {
+        flex: 0 0 auto !important;
+        order: 3 !important;
+        margin-left: 0 !important;
     }
 
     .dropbtn {
-        padding: 0.3rem 0.65rem !important;
-        font-size: 0.8rem !important;
+        padding: 0.2rem 0.5rem !important;
+        font-size: 0.75rem !important;
         height: 34px !important;
+        border-radius: 17px !important;
+        gap: 3px !important;
     }
 
-    /* Dropdown: fixed center panel */
     .dropdown-content {
         position: fixed;
-        top: 85px;
+        top: 75px;
         left: 50%;
         transform: translateX(-50%) translateY(8px) !important;
         width: 90%;
         max-width: 320px;
-        right: auto;
-    }
-    .dropdown.show .dropdown-content {
-        transform: translateX(-50%) translateY(0) !important;
     }
 
-    /* Push player down */
-    .movie-player-section {
-        padding-top: 140px !important;
-        padding-left: 0.5rem;
-        padding-right: 0.5rem;
-    }
+    /* Push player/hero down */
+    .movie-player-section { padding-top: 100px !important; }
+    .hero { padding-top: 100px !important; }
+    .movie-detail-hero { padding-top: 90px !important; }
+}
 
     /* Hero centered */
     .hero-content {
