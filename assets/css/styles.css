@@ -911,22 +911,184 @@ header.scrolled {
 /* Responsive */
 @media (max-width: 768px) {
     .nav-container { 
-        padding: 0.6rem 1rem;
+        padding: 0.5rem 0.75rem;
+        display: flex;
         flex-wrap: wrap;
-        justify-content: flex-start; /* Logo and Category on left */
         align-items: center;
-        gap: 0.8rem;
+        justify-content: flex-start; /* Aligns everything in Row 1 to the left */
+        gap: 0.5rem;
     }
     
-    .logo { flex: 0 0 auto; }
-    .logo img { height: 65px; }
+    .logo { 
+        order: 1;
+        flex: 0 0 auto;
+    }
+    .logo img { height: 75px !important; } /* Bigger Logo */
+    
+    /* Make nav-right children direct flex items of nav-container */
+    .nav-right {
+        display: contents;
+    }
+    
+    .theme-toggle {
+        order: 2;
+        flex: 0 0 auto;
+        margin-left: auto; /* Push buttons to the right side of the logo */
+        width: 36px;
+        height: 36px;
+        font-size: 1rem;
+        box-shadow: none !important;
+    }
     
     .nav-menu { 
+        order: 3;
         flex: 0 0 auto;
-        margin-left: -5px; /* Move Category closer to logo */
+        margin-left: 5px;
     }
     
+    .search-bar { 
+        order: 4;
+        width: 100% !important; 
+        max-width: 100%;
+        margin-top: 5px;
+    }
+    .search-bar input { 
+        height: 40px; 
+        text-align: center;
+        border-radius: 20px !important;
+    }
+
     /* Smaller Category Button */
+    .dropbtn {
+        padding: 0.3rem 0.6rem !important;
+        font-size: 0.75rem !important;
+        height: 34px !important;
+    }
+    
+    .dropdown-content {
+        top: 85px;
+        z-index: 10000;
+    }
+
+    /* Centering Hero Content */
+    .hero-content {
+        display: flex !important;
+        flex-direction: column !important;
+        align-items: center !important;
+        text-align: center !important;
+    }
+
+    .hero-title {
+        font-size: 1.8rem !important;
+        line-height: 1.3 !important;
+        margin-bottom: 0.8rem !important;
+        text-align: center !important;
+    }
+    
+    .hero-desc {
+        text-align: center !important;
+        margin: 0 auto 1.5rem auto !important;
+    }
+
+    .hero-tags {
+        justify-content: center !important;
+    }
+
+    /* Center the Watch Button */
+    .btn-primary {
+        display: inline-flex !important;
+        margin: 0 auto !important;
+        justify-content: center;
+    }
+
+    .hero { 
+        padding-top: 140px !important; 
+        min-height: 80vh !important;
+        align-items: center !important;
+    }
+    
+    .movie-player-section { padding-top: 140px; }
+}
+
+/* Bigger logo */
+    
+    .nav-menu { 
+        order: 3;
+        flex: 0 0 auto;
+        margin-left: 5px;
+    }
+    
+    .nav-right {
+        order: 2; /* Move next to logo/category row */
+        width: auto !important;
+        flex-direction: row !important; /* Keep items in row if possible */
+        justify-content: flex-end;
+        gap: 8px !important;
+        margin-top: 0 !important;
+    }
+    
+    /* Center the search bar on its own row below logo row */
+    .search-bar { 
+        order: 4;
+        width: 100% !important; 
+        max-width: 100%;
+        margin: 0.25rem auto 0 auto !important;
+    }
+    .search-bar input { 
+        height: 42px; 
+        text-align: center;
+        border-radius: 21px !important;
+    }
+
+    /* Smaller Category Button */
+    .dropbtn {
+        padding: 0.3rem 0.6rem !important;
+        font-size: 0.75rem !important;
+        height: 32px !important;
+    }
+    
+    /* Center Theme Toggle next to Category */
+    .theme-toggle {
+        width: 32px;
+        height: 32px;
+        font-size: 0.9rem;
+    }
+
+    .dropdown-content {
+        top: 85px;
+        z-index: 10000;
+    }
+
+    /* Fix hero layout for mobile */
+    .hero-content {
+        display: flex;
+        flex-direction: column;
+        align-items: center; /* Center everything in hero */
+        text-align: center;
+    }
+
+    .hero-title {
+        font-size: 1.8rem !important;
+        line-height: 1.3 !important;
+        margin-bottom: 1rem;
+    }
+    
+    /* Center the Xem Ngay button */
+    .btn-primary {
+        margin: 0 auto;
+        display: inline-flex;
+    }
+
+    .hero { 
+        padding-top: 150px !important; /* Back to shorter padding since Row 1 is compact */
+        min-height: 75vh !important;
+        align-items: center;
+    }
+    
+    .movie-player-section { padding-top: 150px; }
+}
+
+/* Smaller Category Button */
     .dropbtn {
         padding: 0.3rem 0.7rem !important;
         font-size: 0.75rem !important;
@@ -1262,6 +1424,8 @@ header.scrolled {
     color: #ffffff !important;
     font-weight: 700;
 }
+
+
 
 
 
