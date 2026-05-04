@@ -394,7 +394,7 @@ header.scrolled {
     display: flex;
     align-items: flex-start;
     padding: 0 2rem;
-    padding-top: 200px;
+    padding-top: 220px;
     padding-bottom: 5rem;
     margin-top: 0;
     overflow: hidden;
@@ -406,20 +406,26 @@ header.scrolled {
     left: 0;
     width: 100%;
     height: 100%;
-    background-image: url('https://image.tmdb.org/t/p/original/8rpDcsfLJypbO6vtec8Oobm7u70.jpg'); /* Default hero image */
+    background-image: url('https://image.tmdb.org/t/p/original/8rpDcsfLJypbO6vtec8Oobm7u70.jpg');
     background-size: cover;
     background-position: center;
     z-index: -2;
 }
 
+/* Cinematic overlay: fades from bg-color at top ? transparent ? bg-color at bottom */
 .hero-overlay {
     position: absolute;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    background: linear-gradient(to right, var(--bg-color) 0%, rgba(2, 6, 23, 0.7) 50%, transparent 100%),
-                linear-gradient(to top, var(--bg-color) 0%, transparent 50%);
+    background:
+        /* Top: seamless bleed from navbar */
+        linear-gradient(to bottom, var(--bg-color) 0%, transparent 28%),
+        /* Left: dark zone for text */
+        linear-gradient(to right, var(--bg-color) 0%, rgba(2,6,23,0.65) 48%, transparent 100%),
+        /* Bottom: fade out */
+        linear-gradient(to top, var(--bg-color) 0%, transparent 45%);
     z-index: -1;
 }
 
