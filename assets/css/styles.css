@@ -145,27 +145,37 @@ header.scrolled {
     width: 350px;
 }
 
-/* Theme Toggle Button */
+/* Theme Toggle Button - Cute Bubble Style */
 .theme-toggle {
-    background: var(--surface-color);
-    border: 1px solid var(--glass-border);
-    color: var(--text-primary);
-    width: 40px;
-    height: 40px;
-    border-radius: 50%;
+    background: linear-gradient(135deg, #ff9a9e 0%, #fecfef 100%);
+    border: none;
+    color: white;
+    width: 44px;
+    height: 44px;
+    border-radius: 50% 50% 50% 15%; /* Cute irregular bubble */
     cursor: pointer;
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 1.1rem;
-    transition: all 0.3s ease;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    font-size: 1.2rem;
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    box-shadow: 0 4px 15px rgba(255, 154, 158, 0.4);
+    user-select: none;
+    z-index: 1001;
+}
+
+[data-theme="light"] .theme-toggle {
+    background: linear-gradient(135deg, #a18cd1 0%, #fbc2eb 100%);
+    box-shadow: 0 4px 15px rgba(161, 140, 209, 0.4);
 }
 
 .theme-toggle:hover {
-    color: var(--accent-color);
-    transform: rotate(15deg) scale(1.1);
-    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
+    transform: scale(1.1) rotate(15deg);
+    border-radius: 50%;
+}
+
+.theme-toggle:active {
+    transform: scale(0.9);
 }
 
 /* Dropdown Menu */
@@ -915,40 +925,93 @@ header.scrolled {
         display: flex;
         flex-wrap: wrap;
         align-items: center;
-        justify-content: space-between; /* Space items across the row */
+        justify-content: space-between;
         gap: 0.5rem;
     }
     
     .logo { 
         order: 1;
         flex: 0 1 auto;
-        display: flex;
-        justify-content: flex-start;
     }
     .logo img { height: 95px !important; }
     
     .nav-right {
-        display: contents; /* Allow children to be independent in container */
+        display: contents;
     }
     
     .theme-toggle {
         order: 2;
-        flex: 1 1 auto; /* Take available space to stay centered */
-        display: flex;
-        justify-content: center;
-        width: auto !important;
-        background: none !important;
-        box-shadow: none !important;
+        flex: 0 0 auto;
+        margin-left: auto; /* Push towards middle/right */
+        width: 38px !important;
+        height: 38px !important;
+        font-size: 1rem !important;
     }
     
     .nav-menu { 
         order: 3;
-        flex: 0 1 auto;
-        display: flex;
-        justify-content: flex-end;
+        flex: 0 0 auto;
+        margin-left: 5px;
     }
     
-    /* Smaller Category Button pushed to the far right */
+    .dropbtn {
+        padding: 0.3rem 0.6rem !important;
+        font-size: 0.75rem !important;
+        height: 34px !important;
+    }
+
+    .search-bar { 
+        order: 4;
+        width: 100% !important; 
+        max-width: 100%;
+        margin-top: 5px;
+    }
+    .search-bar input { 
+        height: 40px; 
+        text-align: center;
+        border-radius: 20px !important;
+    }
+
+    .dropdown-content {
+        top: 85px;
+        z-index: 10000;
+    }
+
+    .hero-content {
+        display: flex !important;
+        flex-direction: column !important;
+        align-items: center !important;
+        text-align: center !important;
+    }
+
+    .hero-title {
+        font-size: 1.8rem !important;
+        line-height: 1.3 !important;
+        margin-bottom: 0.8rem !important;
+    }
+    
+    .hero-desc {
+        text-align: center !important;
+        margin: 0 auto 1.5rem auto !important;
+    }
+
+    .hero-tags {
+        justify-content: center !important;
+    }
+
+    .btn-primary {
+        display: inline-flex !important;
+        margin: 0 auto !important;
+    }
+
+    .hero { 
+        padding-top: 140px !important; 
+        min-height: 80vh !important;
+        align-items: center !important;
+    }
+}
+
+/* Smaller Category Button pushed to the far right */
     .dropbtn {
         padding: 0.3rem 0.6rem !important;
         font-size: 0.75rem !important;
@@ -1511,6 +1574,7 @@ header.scrolled {
     color: #ffffff !important;
     font-weight: 700;
 }
+
 
 
 
