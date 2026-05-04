@@ -1022,17 +1022,21 @@ header.scrolled {
 
 /* Portrait mobile: minimal player controls */
 @media (max-width: 768px) and (orientation: portrait) {
-    .plyr__controls > [data-plyr="rewind"],
-    .plyr__controls > [data-plyr="fast-forward"],
-    .plyr__controls > [data-plyr="mute"],
+    .plyr__controls [data-plyr="mute"],
     .plyr__controls .plyr__volume,
-    .plyr__controls .plyr__time--current,
-    .plyr__controls .plyr__time--duration,
-    .plyr__controls > [data-plyr="captions"],
-    .plyr__controls > [data-plyr="settings"],
-    .plyr__controls > [data-plyr="pip"],
-    .plyr__controls > [data-plyr="airplay"] {
+    .plyr__controls .plyr__time,
+    .plyr__controls [data-plyr="captions"],
+    .plyr__controls [data-plyr="settings"],
+    .plyr__controls [data-plyr="pip"],
+    .plyr__controls [data-plyr="airplay"],
+    .plyr__controls [data-plyr="rewind"],
+    .plyr__controls [data-plyr="fast-forward"] {
         display: none !important;
+    }
+    
+    .plyr__controls {
+        gap: 5px !important;
+        padding: 0 12px !important;
     }
 }
 
