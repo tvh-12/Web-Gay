@@ -463,7 +463,7 @@ header.scrolled {
 }
 
 .hero-title {
-    font-family: 'Roboto', 'Inter', sans-serif;
+    font-family: 'Quicksand', sans-serif;
     font-size: 4.5rem;
     font-weight: 700;
     line-height: 1.45;
@@ -1110,6 +1110,7 @@ header.scrolled {
         margin: 0 15px !important;
     }
 }
+
 
 
 
