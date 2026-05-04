@@ -1061,3 +1061,16 @@ header.scrolled {
 
 
 
+
+/* ===== Text in Hero/Detail areas always on dark backdrop ===== */
+.hero .hero-desc,
+.movie-detail-hero .hero-desc {
+    color: rgba(255, 255, 255, 0.85) !important;
+    text-shadow: 0 1px 4px rgba(0,0,0,0.6);
+}
+
+.hero h3,
+.movie-detail-hero h3 {
+    color: rgba(255, 255, 255, 0.7) !important;
+    text-shadow: 0 1px 4px rgba(0,0,0,0.5);
+}
