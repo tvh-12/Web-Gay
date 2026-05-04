@@ -451,7 +451,7 @@ header.scrolled {
     gap: 0.3rem;
     background: rgba(0, 0, 0, 0.5);
     border: 1px solid rgba(255,255,255,0.25);
-    backdrop-filter: blur(8px);
+    backdrop-filter: blur(4px);
     padding: 0.3rem 0.85rem;
     border-radius: 6px;
     font-size: 0.8rem;
@@ -1042,19 +1042,19 @@ header.scrolled {
 
 /* Hero Tag Variants */
 .hero-tags span.tag-quality {
-    background: linear-gradient(135deg, rgba(234,179,8,0.3), rgba(234,179,8,0.15));
-    border-color: rgba(234,179,8,0.5);
-    color: #fde047;
+    background: #eab308;
+    color: #000 !important;
+    font-weight: 800;
 }
 .hero-tags span.tag-year {
-    background: linear-gradient(135deg, rgba(14,165,233,0.3), rgba(14,165,233,0.15));
-    border-color: rgba(14,165,233,0.5);
-    color: #7dd3fc;
+    background: #0ea5e9;
+    color: #fff !important;
+    font-weight: 800;
 }
 .hero-tags span.tag-genre {
-    background: linear-gradient(135deg, rgba(168,85,247,0.3), rgba(168,85,247,0.15));
-    border-color: rgba(168,85,247,0.5);
-    color: #d8b4fe;
+    background: #a855f7;
+    color: #fff !important;
+    font-weight: 800;
 }
 
 /* Always white text on dark hero/detail backdrops */
@@ -1081,6 +1081,7 @@ header.scrolled {
     color: #fff !important;
     font-weight: 700;
 }
+
 
 
 
