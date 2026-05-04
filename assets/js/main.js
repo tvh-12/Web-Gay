@@ -143,8 +143,8 @@ document.addEventListener('DOMContentLoaded', () => {
         heroDesc.textContent = desc;
         
         heroTags.innerHTML = `
-            <span>${movie.quality || 'HD'} ${movie.lang || 'Vietsub'}</span>
-            <span>${movie.year || '2024'}</span>
+            <span class="tag-quality"><i class="fas fa-star" style="font-size:0.7rem"></i> ${movie.quality || 'HD'} ${movie.lang || 'Vietsub'}</span>
+            <span class="tag-year"><i class="fas fa-calendar-alt" style="font-size:0.7rem"></i> ${movie.year || '2024'}</span>
         `;
         
         const safeImageUrl = (url) => {

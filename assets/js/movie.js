@@ -149,12 +149,12 @@ async function loadMovieDetail(slug) {
         // Tags
         const tagsContainer = document.getElementById('detailTags');
         tagsContainer.innerHTML = `
-            <span>${movie.quality || 'HD'}</span>
-            <span>${movie.lang || 'Vietsub'}</span>
+            <span class="tag-quality"><i class="fas fa-star" style="font-size:0.7rem"></i> ${movie.quality || 'HD'} ${movie.lang || 'Vietsub'}</span>
+            <span class="tag-year"><i class="fas fa-calendar-alt" style="font-size:0.7rem"></i> ${movie.year || '2024'}</span>
         `;
         if (movie.category && movie.category.length > 0) {
             movie.category.forEach(c => {
-                tagsContainer.innerHTML += `<span>${c.name}</span>`;
+                tagsContainer.innerHTML += `<span class="tag-genre">${c.name}</span>`;
             });
         }
 
