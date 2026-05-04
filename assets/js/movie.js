@@ -263,16 +263,22 @@ let plyrPlayer = null;
 function initPlayer() {
     if (!plyrPlayer) {
         const video = document.getElementById('videoPlayer');
+        
+        // Cấu hình phím điều khiển tối giản cho Mobile
+        const isMobile = window.innerWidth <= 768;
+        const mobileControls = ['play-large', 'play', 'progress', 'fullscreen'];
+        const desktopControls = [
+            'play-large', 'rewind', 'play', 'fast-forward', 'progress', 'current-time', 'duration', 
+            'mute', 'volume', 'captions', 'settings', 'pip', 'airplay', 'fullscreen'
+        ];
+
         plyrPlayer = new Plyr(video, {
-            controls: [
-                'play-large', 'rewind', 'play', 'fast-forward', 'progress', 'current-time', 'duration', 
-                'mute', 'volume', 'captions', 'settings', 'pip', 'airplay', 'fullscreen'
-            ],
+            controls: isMobile ? mobileControls : desktopControls,
             settings: ['quality', 'speed'],
             autoplay: true,
             seekTime: 10,
-            hideControls: true,       // Tự ẩn controls khi không có tương tác
-            hideControlsTimeout: 2000 // Ẩn sau 2 giây không di chuột (ms)
+            hideControls: true,
+            hideControlsTimeout: 2000
         });
     }
 }
