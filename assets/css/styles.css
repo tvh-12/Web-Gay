@@ -1083,16 +1083,49 @@ header.scrolled {
     .movie-detail-poster { width: 160px; }
 }
 
-/* Portrait mobile: minimal player controls (Only Play, Progress, Fullscreen) */
+/* Portrait mobile: minimal player controls (Strict Hide) */
 @media (max-width: 768px) and (orientation: portrait) {
-    /* Hide everything except play, progress, and fullscreen */
-    .plyr__controls > button:not([data-plyr="play"]):not([data-plyr="fullscreen"]),
-    .plyr__controls > .plyr__volume,
-    .plyr__controls > .plyr__time,
-    .plyr__controls > .plyr__menu,
-    .plyr__controls > .plyr__controls__item:not(.plyr__progress):not([data-plyr="play"]):not([data-plyr="fullscreen"]) {
+    /* Target specifically the volume button and slider */
+    .plyr__controls [data-plyr="mute"],
+    .plyr__controls .plyr__volume,
+    .plyr__controls [data-plyr="captions"],
+    .plyr__controls [data-plyr="settings"],
+    .plyr__controls [data-plyr="pip"],
+    .plyr__controls [data-plyr="airplay"],
+    .plyr__controls [data-plyr="rewind"],
+    .plyr__controls [data-plyr="fast-forward"],
+    .plyr__controls .plyr__time {
         display: none !important;
+        width: 0 !important;
+        height: 0 !important;
+        padding: 0 !important;
+        margin: 0 !important;
+        visibility: hidden !important;
+        opacity: 0 !important;
+        pointer-events: none !important;
     }
+    
+    .plyr__controls {
+        gap: 5px !important;
+        padding: 0 8px !important;
+        height: 44px !important;
+        display: flex !important;
+        flex-direction: row !important;
+        align-items: center !important;
+    }
+
+    .plyr__progress {
+        flex: 1 !important;
+        margin: 0 5px !important;
+    }
+    
+    .plyr__controls [data-plyr="play"],
+    .plyr__controls [data-plyr="fullscreen"] {
+        display: flex !important;
+        width: 34px !important;
+        height: 34px !important;
+    }
+}
     
     .plyr__controls {
         gap: 5px !important;
@@ -1159,6 +1192,7 @@ header.scrolled {
     color: #fff !important;
     font-weight: 700;
 }
+
 
 
 
