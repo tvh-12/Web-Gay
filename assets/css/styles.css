@@ -911,72 +911,61 @@ header.scrolled {
 /* Responsive */
 @media (max-width: 768px) {
     .nav-container { 
-        padding: 1rem;
+        padding: 0.75rem 1rem;
         flex-wrap: wrap;
-        justify-content: center;
-        gap: 1rem;
+        justify-content: space-between;
+        gap: 0.5rem;
     }
-    .logo { font-size: 1.5rem; }
-    .logo img { height: 100px; }
-    .nav-menu { margin-left: 0; }
-    .tagline-container {
-    flex: 1;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-.nav-tagline {
-    font-family: 'Playfair Display', Georgia, serif;
-    font-style: italic;
-    font-weight: 600;
-    font-size: 1.25rem;
-    color: rgb(255, 0, 0);
-    text-shadow: 0 0 15px rgba(255, 0, 0, 0.5);
-    transition: opacity 0.5s ease, color 0.5s ease, text-shadow 0.5s ease;
-    letter-spacing: 0.3px;
-    white-space: nowrap;
-    pointer-events: auto;
-    cursor: pointer;
-    text-decoration: none !important;
-    user-select: none;
-}
+    .logo img { height: 80px; }
+    
+    /* Hide tagline on mobile to save space as requested */
+    .tagline-container { display: none !important; }
+
+    .nav-right { gap: 10px; }
+
     .search-bar { 
         display: block; 
         width: 100%; 
         order: 4;
         margin-top: 0.5rem;
     }
-    .dropdown-content {
-        left: 50%;
-        transform: translateX(-50%) translateY(10px);
-    }
-    .dropdown.show .dropdown-content {
-        transform: translateX(-50%) translateY(0);
-    }
+    .search-bar input { height: 40px; font-size: 0.9rem; }
+
+    /* Fix hero title size for mobile */
     .hero-title {
-    font-family: 'Nunito', 'Inter', sans-serif;
-    font-size: 4.5rem;
-    font-weight: 900;
-    line-height: 1.45;
-    margin-bottom: 0.75rem;
-    max-width: 800px;
-    letter-spacing: 0px;
-    color: #ffffff;
-    text-shadow: 0px 4px 20px rgba(0,0,0,0.9), 0px 2px 8px rgba(0,0,0,0.7);
-}
-    .hero { padding-top: 200px; } /* bù thêm không gian cho navbar 2 dòng */
-    .movie-player-section { padding-top: 220px; padding-left: 1rem; padding-right: 1rem; } /* Đẩy video xuống trên mobile */
-    .movie-episode-section { padding-left: 1rem; padding-right: 1rem; padding-bottom: 1rem; }
-    .movie-detail-hero { padding-top: 2rem; } /* không cần bù navbar nữa */
+        font-size: 2.2rem !important;
+        line-height: 1.25 !important;
+        margin-bottom: 1rem;
+        text-align: center;
+    }
+    .hero-desc {
+        font-size: 1rem;
+        text-align: center;
+        margin: 0 auto 1.5rem auto;
+    }
+    .hero-tags {
+        justify-content: center;
+    }
+    
+    .hero { 
+        padding-top: 150px !important; 
+        min-height: 80vh !important;
+        align-items: center; /* Center content on mobile for better look */
+    }
+    
+    .movie-player-section { padding-top: 160px; }
+    
+    .movie-detail-hero { padding-top: 120px; }
     .movie-detail-container { 
         flex-direction: column; 
-        gap: 2rem; 
+        gap: 1.5rem; 
         align-items: center; 
-        padding: 0 1rem; 
+        text-align: center;
     }
-    .movie-detail-info { width: 100%; }
-    .movie-detail-poster { width: 250px; }
+    .movie-detail-info { width: 100%; display: flex; flex-direction: column; align-items: center; }
+    .movie-detail-poster { width: 180px; }
 }
+
 
 /* Tối ưu Plyr cho Mobile - Chỉ áp dụng khi xoay dọc (Portrait) */
 @media (max-width: 768px) and (orientation: portrait) {
@@ -1099,4 +1088,6 @@ header.scrolled {
     color: #ffffff !important;
     font-weight: 700;
 }
+
+
 
