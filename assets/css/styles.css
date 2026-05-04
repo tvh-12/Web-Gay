@@ -410,13 +410,14 @@ header.scrolled {
 /* Hero Section */
 .hero {
     position: relative;
-    height: 80vh;
-    min-height: 500px;
+    min-height: 90vh;
     display: flex;
-    align-items: center;
+    align-items: flex-start;
     padding: 0 2rem;
-    padding-top: 160px; /* bù chiều cao thanh nav cố định */
+    padding-top: 200px;
+    padding-bottom: 5rem;
     margin-top: 0;
+    overflow: hidden;
 }
 
 .hero-backdrop {
@@ -1057,4 +1058,5 @@ header.scrolled {
     border-color: rgba(168,85,247,0.5);
     color: #d8b4fe;
 }
+
 
