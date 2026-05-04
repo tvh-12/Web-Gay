@@ -79,7 +79,7 @@ header.scrolled {
     max-width: 1400px;
     margin: 0 auto;
     padding: 0 2rem;
-    height: 85px;
+    height: 100px;
     display: flex;
     align-items: center;
     gap: 1.25rem;
@@ -109,6 +109,7 @@ header.scrolled {
     align-items: center;
 }
 .nav-tagline {
+    transition: all 0.5s ease;
     font-family: 'Playfair Display', Georgia, serif;
     font-style: italic;
     font-weight: 600;
@@ -607,7 +608,7 @@ header.scrolled {
     left: 50%;
     transform: translate(-50%, -50%) scale(0.5);
     width: 60px;
-    height: 85px;
+    height: 100px;
     background: var(--accent-color);
     border-radius: 50%;
     display: flex;
@@ -1080,6 +1081,8 @@ header.scrolled {
     color: #fff !important;
     font-weight: 700;
 }
+
+
 
 
 
