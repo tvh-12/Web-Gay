@@ -104,16 +104,9 @@ header.scrolled {
     font-style: italic;
     font-weight: 600;
     font-size: 1.25rem;
-    color: transparent;
-    background: linear-gradient(90deg, 
-        #ff0018, #ffa52c, #ffff41, #008018, #0000f9, #86007d,
-        #ff0018, #ffa52c, #ffff41, #008018, #0000f9, #86007d
-    );
-    background-size: 200% auto;
-    background-clip: text;
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    animation: shimmer 20s linear infinite;
+    color: rgb(255, 0, 0);
+    text-shadow: 0 0 15px rgba(255, 0, 0, 0.5);
+    transition: opacity 0.5s ease, color 0.5s ease, text-shadow 0.5s ease;
     letter-spacing: 0.3px;
     white-space: nowrap;
     flex: 1;
@@ -991,3 +984,4 @@ header.scrolled {
         height: 16px !important;
     }
 }
+
