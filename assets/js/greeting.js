@@ -4,11 +4,12 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const greetings = [
         { text: "Xin Chào Gayer !", color: "rgb(255, 0, 0)" },       // Tiếng Việt - Đỏ
-        { text: "Hello Gayer !", color: "rgb(255, 127, 0)" },     // Tiếng Anh - Cam
-        { text: "你好 Gayer !", color: "rgb(255, 255, 0)" },      // Tiếng Trung - Vàng
-        { text: "नमस्ते Gayer !", color: "rgb(0, 255, 0)" },      // Tiếng Hindi - Xanh lá
-        { text: "¡Hola Gayer !", color: "rgb(0, 0, 255)" },       // Tiếng Tây Ban Nha - Xanh dương
-        { text: "Bonjour Gayer !", color: "rgb(148, 0, 211)" }    // Tiếng Pháp - Tím
+        { text: "Hello Gayer !", color: "rgb(255, 127, 0)" },        // Tiếng Anh - Cam
+        { text: "你好，给友 !", color: "rgb(255, 255, 0)" },           // Tiếng Trung - Vàng
+        { text: "नमस्ते, गे दोस्त !", color: "rgb(0, 255, 0)" },         // Tiếng Hindi - Xanh lá
+        { text: "¡Hola, gay !", color: "rgb(0, 0, 255)" },           // Tiếng Tây Ban Nha - Xanh dương
+        { text: "Salut, gay !", color: "rgb(148, 0, 211)" },         // Tiếng Pháp - Tím
+        { text: "Привет, гей !", color: "rgb(255, 0, 255)" }         // Tiếng Nga - Hồng cánh sen
     ];
 
     let currentIndex = 0;
