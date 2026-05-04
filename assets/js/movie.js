@@ -270,7 +270,9 @@ function initPlayer() {
             ],
             settings: ['quality', 'speed'],
             autoplay: true,
-            seekTime: 10
+            seekTime: 10,
+            hideControls: true,       // Tự ẩn controls khi không có tương tác
+            hideControlsTimeout: 2000 // Ẩn sau 2 giây không di chuột (ms)
         });
     }
 }
