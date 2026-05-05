@@ -197,8 +197,36 @@ header.scrolled {
 }
 .theme-toggle:active { transform: scale(0.92); }
 
-/* Genre dropdown */
-.nav-menu { flex-shrink: 0; }
+/* Genre dropdown & K-Drama */
+.nav-menu { 
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.k-drama-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 8px 18px;
+    font-size: 0.95rem;
+    font-weight: 700;
+    color: #fff;
+    background: linear-gradient(135deg, #f43f5e, #e11d48);
+    border: none;
+    border-radius: 22px;
+    cursor: pointer;
+    white-space: nowrap;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(225, 29, 72, 0.4);
+}
+.k-drama-btn:hover {
+    transform: translateY(-2px) scale(1.05);
+    box-shadow: 0 6px 20px rgba(225, 29, 72, 0.6);
+}
+
 .dropdown { position: relative; display: inline-block; }
 .dropbtn {
     display: inline-flex;
@@ -981,6 +1009,15 @@ header.scrolled {
         flex: 0 0 auto !important;
         order: 3 !important;
         margin-left: 0 !important;
+        gap: 5px !important;
+    }
+
+    .k-drama-btn {
+        padding: 0.2rem 0.6rem !important;
+        font-size: 0.75rem !important;
+        height: 34px !important;
+        border-radius: 17px !important;
+        gap: 3px !important;
     }
 
     .dropbtn {

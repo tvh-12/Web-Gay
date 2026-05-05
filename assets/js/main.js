@@ -60,6 +60,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const query = searchInput.value.trim();
         const navUrlParams = new URLSearchParams(window.location.search);
         const navCategory = navUrlParams.get('category');
+        const navCountry = navUrlParams.get('country');
         let data;
         
         if (query) {
@@ -77,6 +78,13 @@ document.addEventListener('DOMContentLoaded', () => {
             const catDisplayName = catMap[navCategory] || navCategory;
             data = await VSAPI.getMoviesByCategory(navCategory, page);
             document.querySelector('.section-title').textContent = `Thể loại phim: ${catDisplayName}`;
+        } else if (navCountry) {
+            const countryMap = {
+                'han-quoc': 'Hàn Quốc (K-Drama)'
+            };
+            const countryDisplayName = countryMap[navCountry] || navCountry;
+            data = await VSAPI.getMoviesByCountry(navCountry, page);
+            document.querySelector('.section-title').textContent = `Phim Quốc Gia: ${countryDisplayName}`;
         } else {
             data = await VSAPI.getLatestMovies(page);
             document.querySelector('.section-title').textContent = `Phim Mới Cập Nhật`;

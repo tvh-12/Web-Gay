@@ -113,6 +113,38 @@ const VSAPI = {
         }
     },
 
+    // ── Lọc theo quốc gia ───────────────────────────────────
+    getMoviesByCountry: async (countrySlug, page = 1) => {
+        try {
+            const url = `https://phimapi.com/v1/api/quoc-gia/${countrySlug}?page=${page}&limit=24`;
+            const res = await fetch(url);
+            if (!res.ok) throw new Error(`HTTP ${res.status}`);
+            const json = await res.json();
+
+            const raw = json?.data?.items || [];
+            const items = raw.map(m => ({
+                ...m,
+                poster_url: normalizeImage(m.poster_url),
+                thumb_url:  normalizeImage(m.thumb_url),
+            }));
+
+            const pg = json?.data?.params?.pagination || {};
+            return {
+                status: true,
+                items,
+                pagination: {
+                    totalItems:        pg.totalItems        || items.length,
+                    totalItemsPerPage: pg.totalItemsPerPage || 24,
+                    currentPage:       pg.currentPage       || page,
+                    totalPages:        pg.totalPages        || 1,
+                }
+            };
+        } catch (err) {
+            console.error('[API] getMoviesByCountry:', err);
+            return null;
+        }
+    },
+
     // ── Chi tiết phim + tập phim ────────────────────────────
     getMovieDetail: async (slug) => {
         try {
