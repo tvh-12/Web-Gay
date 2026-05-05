@@ -209,7 +209,7 @@ header.scrolled {
     display: inline-flex;
     align-items: center;
     gap: 6px;
-    padding: 8px 18px;
+    padding: 8px 12px;
     font-size: 0.95rem;
     font-weight: 700;
     color: #f43f5e;
