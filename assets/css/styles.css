@@ -214,7 +214,7 @@ header.scrolled {
     font-weight: 700;
     color: #fff;
     background: linear-gradient(135deg, #f43f5e, #e11d48);
-    border: none;
+    border: 2px solid transparent;
     border-radius: 22px;
     cursor: pointer;
     white-space: nowrap;
@@ -1013,11 +1013,7 @@ header.scrolled {
     }
 
     .k-drama-btn {
-        padding: 0.2rem 0.6rem !important;
-        font-size: 0.75rem !important;
-        height: 34px !important;
-        border-radius: 17px !important;
-        gap: 3px !important;
+        display: none !important;
     }
 
     .dropbtn {
