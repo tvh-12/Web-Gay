@@ -315,8 +315,21 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 
-    // Init load
+    // K-Drama toggle logic
+    const kDramaBtn = document.querySelector('.k-drama-btn');
     const urlParams = new URLSearchParams(window.location.search);
+    if (kDramaBtn) {
+        const currentCountry = urlParams.get('country');
+        if (currentCountry === 'han-quoc') {
+            kDramaBtn.classList.add('active');
+            kDramaBtn.href = 'index.html'; // Click again to turn off
+        } else {
+            kDramaBtn.classList.remove('active');
+            kDramaBtn.href = 'index.html?country=han-quoc'; // Click to turn on
+        }
+    }
+
+    // Init load
     const searchParam = urlParams.get('search');
     if (searchParam) {
         searchInput.value = searchParam;

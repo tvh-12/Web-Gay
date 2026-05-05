@@ -212,19 +212,25 @@ header.scrolled {
     padding: 8px 18px;
     font-size: 0.95rem;
     font-weight: 700;
-    color: #fff;
-    background: linear-gradient(135deg, #f43f5e, #e11d48);
-    border: 2px solid transparent;
+    color: #f43f5e;
+    background: rgba(244, 63, 94, 0.12);
+    border: 2px solid rgba(244, 63, 94, 0.35);
     border-radius: 22px;
     cursor: pointer;
     white-space: nowrap;
     text-decoration: none;
-    transition: all 0.3s ease;
-    box-shadow: 0 4px 15px rgba(225, 29, 72, 0.4);
+    transition: all 0.25s ease;
 }
 .k-drama-btn:hover {
-    transform: translateY(-2px) scale(1.05);
-    box-shadow: 0 6px 20px rgba(225, 29, 72, 0.6);
+    background: rgba(244, 63, 94, 0.22);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(244, 63, 94, 0.2);
+}
+.k-drama-btn.active {
+    background: #f43f5e;
+    color: #fff;
+    border-color: #f43f5e;
+    box-shadow: 0 4px 15px rgba(244, 63, 94, 0.4);
 }
 
 .dropdown { position: relative; display: inline-block; }
