@@ -77,10 +77,14 @@ const VSAPI = {
         }
     },
 
-    // ── Lọc theo thể loại ───────────────────────────────────
+    // ── Lọc theo thể loại & Danh sách đặc biệt ────────────────
     getMoviesByCategory: async (categorySlug, page = 1) => {
         try {
-            const url = `https://phimapi.com/v1/api/the-loai/${categorySlug}?page=${page}&limit=24`;
+            // Một số danh sách đặc biệt dùng endpoint khác
+            const specialLists = ['hoat-hinh', 'phim-bo', 'phim-le', 'tv-shows'];
+            const endpoint = specialLists.includes(categorySlug) ? 'danh-sach' : 'the-loai';
+            
+            const url = `https://phimapi.com/v1/api/${endpoint}/${categorySlug}?page=${page}&limit=24`;
             const res = await fetch(url);
             if (!res.ok) throw new Error(`HTTP ${res.status}`);
             const json = await res.json();

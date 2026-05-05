@@ -68,9 +68,11 @@ document.addEventListener('DOMContentLoaded', () => {
         } else if (navCategory) {
             // Mapping ten hien thi
             const catMap = {
-                'hanh-dong': 'Hành động', 'tinh-cam': 'Tình cảm', 
-                'kinh-di': 'Kinh dị', 'hai-huoc': 'Hài hước',
-                'hoat-hinh': 'Hoạt hình', 'phieu-luu': 'Phiêu lưu'
+                'phim-bo': 'Phim Bộ', 'phim-le': 'Phim Lẻ', 'hoat-hinh': 'Hoạt Hình',
+                'hanh-dong': 'Hành Động', 'tinh-cam': 'Tình Cảm', 'co-trang': 'Cổ Trang',
+                'chien-tranh': 'Chiến Tranh', 'vien-tuong': 'Viễn Tưởng', 'kinh-di': 'Kinh Dị',
+                'tam-ly': 'Tâm Lý', 'hai-huoc': 'Hài Hước', 'vo-thuat': 'Võ Thuật',
+                'khoa-hoc': 'Khoa Học', 'than-thoai': 'Thần Thoại'
             };
             const catDisplayName = catMap[navCategory] || navCategory;
             data = await VSAPI.getMoviesByCategory(navCategory, page);

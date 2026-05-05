@@ -234,32 +234,41 @@ header.scrolled {
     position: absolute;
     right: 0;
     top: calc(100% + 10px);
-    min-width: 220px;
+    display: none;
+    position: absolute;
+    right: 0;
     background: var(--surface-color);
+    min-width: 300px;
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.6);
+    z-index: 1000;
+    border-radius: 16px;
     border: 1px solid var(--glass-border);
-    border-radius: 14px;
-    box-shadow: 0 8px 30px rgba(0,0,0,0.2);
-    padding: 8px;
-    display: grid;
-    grid-template-columns: 1fr 1fr;
+    padding: 0.75rem;
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    grid-template-columns: repeat(2, 1fr);
     gap: 4px;
-    transform: translateY(8px);
-    transition: all 0.25s cubic-bezier(0.175,0.885,0.32,1.275);
-    z-index: 1100;
 }
+
 .dropdown.show .dropdown-content {
-    visibility: visible;
-    opacity: 1;
-    transform: translateY(0);
+    display: grid !important;
+    animation: dropdownFade 0.3s ease forwards;
 }
+
+@keyframes dropdownFade {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
 .dropdown-content a {
-    color: var(--text-secondary);
-    padding: 8px 10px;
+    color: var(--text-primary);
+    padding: 0.7rem 1rem;
     text-decoration: none;
+    display: flex;
+    align-items: center;
     border-radius: 8px;
     font-size: 0.9rem;
-    text-align: center;
-    transition: background 0.2s, color 0.2s;
+    transition: all 0.2s ease;
 }
 .dropdown-content a:hover {
     background: var(--surface-light);
@@ -990,9 +999,11 @@ header.scrolled {
         position: fixed;
         top: 75px;
         left: 50%;
-        transform: translateX(-50%) translateY(8px) !important;
+        transform: translateX(-50%) !important;
         width: 90%;
-        max-width: 320px;
+        max-width: 340px;
+        grid-template-columns: repeat(2, 1fr);
+        padding: 0.5rem;
     }
 
     /* Push player/hero down */
