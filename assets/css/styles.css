@@ -209,7 +209,7 @@ header.scrolled {
     display: inline-flex;
     align-items: center;
     gap: 6px;
-    padding: 5px 18px;
+    padding: 6px 16px;
     font-size: 0.9rem;
     font-weight: 700;
     color: #f43f5e;
@@ -238,8 +238,8 @@ header.scrolled {
     display: inline-flex;
     align-items: center;
     gap: 6px;
-    padding: 8px 18px;
-    font-size: 0.95rem;
+    padding: 6px 16px;
+    font-size: 0.9rem;
     font-weight: 700;
     color: #0ea5e9;
     background: rgba(14,165,233,0.12);
