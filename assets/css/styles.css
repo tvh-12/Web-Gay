@@ -234,9 +234,11 @@ header.scrolled {
     position: absolute;
     right: 0;
     top: calc(100% + 10px);
+    top: calc(100% + 10px);
     display: none;
     position: absolute;
     right: 0;
+    top: calc(100% + 10px);
     background: var(--surface-color);
     min-width: 300px;
     box-shadow: 0 15px 35px rgba(0, 0, 0, 0.6);
@@ -1121,6 +1123,7 @@ header.scrolled {
         margin: 0 15px !important;
     }
 }
+
 
 
 
