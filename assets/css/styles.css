@@ -209,8 +209,8 @@ header.scrolled {
     display: inline-flex;
     align-items: center;
     gap: 6px;
-    padding: 8px 12px;
-    font-size: 0.95rem;
+    padding: 5px 18px;
+    font-size: 0.9rem;
     font-weight: 700;
     color: #f43f5e;
     background: rgba(244, 63, 94, 0.12);
