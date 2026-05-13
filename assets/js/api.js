@@ -122,11 +122,16 @@ const VSAPI = {
             const json = await res.json();
 
             const raw = json?.data?.items || [];
-            const items = raw.map(m => ({
+            let items = raw.map(m => ({
                 ...m,
                 poster_url: normalizeImage(m.poster_url),
                 thumb_url:  normalizeImage(m.thumb_url),
             }));
+
+            // Lọc bỏ phim hoạt hình (thường là hợp tác sản xuất Âu/Mỹ/Nhật) khỏi chuẩn K-Drama
+            if (countrySlug === 'han-quoc') {
+                items = items.filter(m => m.type !== 'hoathinh');
+            }
 
             const pg = json?.data?.params?.pagination || {};
             return {
