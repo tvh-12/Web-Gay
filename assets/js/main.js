@@ -131,7 +131,7 @@ document.addEventListener('DOMContentLoaded', () => {
             const imageUrl = safeImageUrl(item.thumb_url || item.poster_url);
 
             card.innerHTML = `
-                <img src="${imageUrl}" alt="${item.name}" class="movie-poster" loading="lazy">
+                <img src="${imageUrl}" alt="${item.name}" class="movie-poster" loading="lazy" onerror="this.onerror=null;this.src='https://placehold.co/300x450/1a1a2e/ffffff.png?text=No+Image';">
                 <div class="play-overlay"><i class="fas fa-play"></i></div>
                 <div class="movie-info">
                     <h3 class="movie-title">${item.name}</h3>

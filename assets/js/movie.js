@@ -52,7 +52,7 @@ document.addEventListener('DOMContentLoaded', () => {
             a.href = `movie.html?slug=${item.slug}`;
             a.className = 'suggestion-item';
             a.innerHTML = `
-                <img class="suggestion-thumb" src="${getSafeThumb(item.thumb_url || item.poster_url)}" alt="${item.name}" loading="lazy">
+                <img class="suggestion-thumb" src="${getSafeThumb(item.thumb_url || item.poster_url)}" alt="${item.name}" loading="lazy" onerror="this.onerror=null;this.src='https://placehold.co/100x150/1a1a2e/ffffff.png?text=No+Image';">
                 <div class="suggestion-info">
                     <div class="suggestion-name">${item.name}</div>
                     <div class="suggestion-meta">
