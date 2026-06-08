@@ -231,8 +231,9 @@ header.scrolled {
 .k-drama-btn.active {
     background: linear-gradient(135deg, #CD2E3A 0%, #0047A0 100%);
     color: #fff;
-    border-color: transparent;
-    box-shadow: 0 4px 15px rgba(205, 46, 58, 0.4);
+    border: none;
+    padding: 8px 18px; /* Compensate for the removed 2px border */
+    box-shadow: -4px 4px 12px rgba(205, 46, 58, 0.35), 4px 4px 12px rgba(0, 71, 160, 0.35);
 }
 
 .dropdown { position: relative; display: inline-block; }
