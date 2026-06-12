@@ -1160,17 +1160,44 @@ header.scrolled {
     }
 }
 
-/* FIX PLYR CONTROLS INVISIBLE BUT CLICKABLE IN FULLSCREEN (GPU RENDER BUG) */
-.plyr--fullscreen-active .plyr__controls {
+/* ═══════════════════════════════════════════════════════════════
+   FIX: PLYR CONTROLS INVISIBLE IN FULLSCREEN (EDGE/CHROMIUM)
+   
+   Root cause: With widescreen videos (2.35:1, 21:9), the video's
+   GPU compositing layer sits ABOVE the Plyr controls overlay,
+   making controls invisible but still clickable.
+   
+   Solution: Force the controls onto a separate, elevated GPU
+   compositing layer, and push the video to a lower one.
+   ═══════════════════════════════════════════════════════════════ */
+
+/* Push video wrapper to a LOW GPU compositing layer */
+.plyr--fullscreen-active .plyr__video-wrapper {
     transform: translateZ(0) !important;
     -webkit-transform: translateZ(0) !important;
-    z-index: 2147483647 !important;
+    z-index: 0 !important;
+    position: relative !important;
 }
 
-/* FIX EDGE/CHROME MOUSEMOVE INTERCEPTION IN FULLSCREEN */
+/* Prevent native <video> from intercepting mouse events */
 .plyr--fullscreen-active video {
     pointer-events: none !important;
 }
-.plyr--fullscreen-active .plyr__video-wrapper {
-    pointer-events: auto !important;
+
+/* Elevate controls to a HIGH GPU compositing layer */
+.plyr--fullscreen-active .plyr__controls {
+    transform: translateZ(999px) !important;
+    -webkit-transform: translateZ(999px) !important;
+    z-index: 2147483647 !important;
+    will-change: opacity, transform !important;
+    backface-visibility: hidden !important;
+    -webkit-backface-visibility: hidden !important;
+    position: relative !important;
+}
+
+/* Also elevate the big play button overlay */
+.plyr--fullscreen-active .plyr__control--overlaid {
+    transform: translateZ(999px) !important;
+    -webkit-transform: translateZ(999px) !important;
+    z-index: 2147483647 !important;
 }

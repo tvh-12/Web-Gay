@@ -278,19 +278,6 @@ function initPlayer() {
             hideControls: true,
             hideControlsTimeout: 2000
         });
-
-        // Khắc phục lỗi Plyr tàng hình bằng cách dùng API chuẩn của Plyr kết hợp throttle
-        let mousemoveTimeout = null;
-        document.addEventListener('mousemove', () => {
-            if (plyrPlayer && plyrPlayer.fullscreen.active && plyrPlayer.playing) {
-                if (!mousemoveTimeout) {
-                    plyrPlayer.toggleControls(true); // Yêu cầu Plyr hiện controls (Plyr sẽ tự đếm ngược để ẩn đi)
-                    mousemoveTimeout = setTimeout(() => {
-                        mousemoveTimeout = null;
-                    }, 300); // Chỉ gọi API 300ms một lần để tránh xung đột hiệu năng
-                }
-            }
-        });
     }
 }
 
