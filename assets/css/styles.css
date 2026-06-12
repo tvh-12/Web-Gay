@@ -1161,14 +1161,10 @@ header.scrolled {
 }
 
 /* ═══════════════════════════════════════════════════════════════
-   FIX: PLYR CONTROLS INVISIBLE IN FULLSCREEN (EDGE/CHROMIUM)
+   FIX: PLYR CONTROLS IN FULLSCREEN (EDGE/CHROMIUM)
    
-   Root cause: With widescreen videos (2.35:1, 21:9), the video's
-   GPU compositing layer sits ABOVE the Plyr controls overlay,
-   making controls invisible but still clickable.
-   
-   Solution: Force the controls onto a separate, elevated GPU
-   compositing layer, and push the video to a lower one.
+   1. GPU layer separation for widescreen videos
+   2. Cinema-style: controls only appear when mouse near bottom
    ═══════════════════════════════════════════════════════════════ */
 
 /* Push video wrapper to a LOW GPU compositing layer */
@@ -1200,4 +1196,35 @@ header.scrolled {
     transform: translateZ(999px) !important;
     -webkit-transform: translateZ(999px) !important;
     z-index: 2147483647 !important;
+}
+
+/* ── CINEMA MODE: Only show controls on bottom-hover ── */
+
+/* While playing in fullscreen, ALWAYS keep controls hidden
+   (override Plyr's internal mousemove show/hide logic) */
+.plyr--fullscreen-active.plyr--playing .plyr__controls {
+    opacity: 0 !important;
+    transition: opacity 0.3s ease !important;
+}
+
+/* Create a tall invisible trigger zone (80px) above the controls bar
+   so the user doesn't need pixel-perfect aim to reach the controls */
+.plyr--fullscreen-active.plyr--playing .plyr__controls::before {
+    content: '';
+    position: absolute;
+    bottom: 100%;
+    left: 0;
+    right: 0;
+    height: 80px;
+    pointer-events: auto;
+}
+
+/* Show controls ONLY when mouse hovers over the bottom trigger area */
+.plyr--fullscreen-active.plyr--playing .plyr__controls:hover {
+    opacity: 1 !important;
+}
+
+/* When PAUSED in fullscreen, always show controls normally */
+.plyr--fullscreen-active.plyr--paused .plyr__controls {
+    opacity: 1 !important;
 }
