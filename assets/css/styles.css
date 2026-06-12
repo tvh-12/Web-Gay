@@ -1166,3 +1166,11 @@ header.scrolled {
     -webkit-transform: translateZ(0) !important;
     z-index: 2147483647 !important;
 }
+
+/* FIX EDGE/CHROME MOUSEMOVE INTERCEPTION IN FULLSCREEN */
+.plyr--fullscreen-active video {
+    pointer-events: none !important;
+}
+.plyr--fullscreen-active .plyr__video-wrapper {
+    pointer-events: auto !important;
+}
