@@ -278,6 +278,22 @@ function initPlayer() {
             hideControls: true,
             hideControlsTimeout: 2000
         });
+
+        // Khắc phục triệt để lỗi Plyr bị tàng hình trong chế độ toàn màn hình
+        document.addEventListener('mousemove', () => {
+            if (plyrPlayer && plyrPlayer.fullscreen.active) {
+                const container = plyrPlayer.elements.container;
+                if (container) {
+                    container.classList.remove('plyr--hide-controls');
+                    clearTimeout(plyrPlayer.customFsTimeout);
+                    plyrPlayer.customFsTimeout = setTimeout(() => {
+                        if (plyrPlayer.playing) {
+                            container.classList.add('plyr--hide-controls');
+                        }
+                    }, 2500);
+                }
+            }
+        });
     }
 }
 
