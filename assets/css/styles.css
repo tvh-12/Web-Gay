@@ -1160,8 +1160,9 @@ header.scrolled {
     }
 }
 
-
-
-
-
-
+/* FIX PLYR CONTROLS INVISIBLE BUT CLICKABLE IN FULLSCREEN (GPU RENDER BUG) */
+.plyr--fullscreen-active .plyr__controls {
+    transform: translateZ(0) !important;
+    -webkit-transform: translateZ(0) !important;
+    z-index: 2147483647 !important;
+}
