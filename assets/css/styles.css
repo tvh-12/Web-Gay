@@ -1165,10 +1165,13 @@ header.scrolled {
    
    1. GPU layer separation for widescreen videos
    2. Cinema-style: controls only appear when mouse near bottom
+   
+   Uses custom .plyr-cinema-mode class (added by JS) instead of
+   Plyr's .plyr--fullscreen-active to avoid Plyr's JS overrides.
    ═══════════════════════════════════════════════════════════════ */
 
 /* Push video wrapper to a LOW GPU compositing layer */
-.plyr--fullscreen-active .plyr__video-wrapper {
+.plyr-cinema-mode .plyr__video-wrapper {
     transform: translateZ(0) !important;
     -webkit-transform: translateZ(0) !important;
     z-index: 0 !important;
@@ -1176,12 +1179,12 @@ header.scrolled {
 }
 
 /* Prevent native <video> from intercepting mouse events */
-.plyr--fullscreen-active video {
+.plyr-cinema-mode video {
     pointer-events: none !important;
 }
 
 /* Elevate controls to a HIGH GPU compositing layer */
-.plyr--fullscreen-active .plyr__controls {
+.plyr-cinema-mode .plyr__controls {
     transform: translateZ(999px) !important;
     -webkit-transform: translateZ(999px) !important;
     z-index: 2147483647 !important;
@@ -1192,7 +1195,7 @@ header.scrolled {
 }
 
 /* Also elevate the big play button overlay */
-.plyr--fullscreen-active .plyr__control--overlaid {
+.plyr-cinema-mode .plyr__control--overlaid {
     transform: translateZ(999px) !important;
     -webkit-transform: translateZ(999px) !important;
     z-index: 2147483647 !important;
@@ -1200,16 +1203,14 @@ header.scrolled {
 
 /* ── CINEMA MODE: Only show controls on bottom-hover ── */
 
-/* While playing in fullscreen, ALWAYS keep controls hidden
-   (override Plyr's internal mousemove show/hide logic) */
-.plyr--fullscreen-active.plyr--playing .plyr__controls {
+/* In cinema mode, ALWAYS keep controls hidden by default */
+.plyr-cinema-mode .plyr__controls {
     opacity: 0 !important;
     transition: opacity 0.3s ease !important;
 }
 
-/* Create a tall invisible trigger zone (80px) above the controls bar
-   so the user doesn't need pixel-perfect aim to reach the controls */
-.plyr--fullscreen-active.plyr--playing .plyr__controls::before {
+/* Create a tall invisible trigger zone (80px) above the controls bar */
+.plyr-cinema-mode .plyr__controls::before {
     content: '';
     position: absolute;
     bottom: 100%;
@@ -1219,12 +1220,12 @@ header.scrolled {
     pointer-events: auto;
 }
 
-/* Show controls ONLY when mouse hovers over the bottom trigger area */
-.plyr--fullscreen-active.plyr--playing .plyr__controls:hover {
+/* Show controls ONLY when mouse hovers the bottom trigger area */
+.plyr-cinema-mode .plyr__controls:hover {
     opacity: 1 !important;
 }
 
-/* When PAUSED in fullscreen, always show controls normally */
-.plyr--fullscreen-active.plyr--paused .plyr__controls {
+/* When PAUSED in fullscreen, always show controls */
+.plyr-cinema-mode.plyr--paused .plyr__controls {
     opacity: 1 !important;
 }

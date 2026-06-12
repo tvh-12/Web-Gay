@@ -275,8 +275,16 @@ function initPlayer() {
             settings: ['quality', 'speed'],
             autoplay: true,
             seekTime: 10,
-            hideControls: true,
-            hideControlsTimeout: 2000
+            hideControls: false
+        });
+
+        // Cinema Mode: Tự quản lý ẩn/hiện controls trong fullscreen
+        // Plyr's hideControls bị tắt, ta dùng CSS class thay thế
+        plyrPlayer.on('enterfullscreen', () => {
+            plyrPlayer.elements.container.classList.add('plyr-cinema-mode');
+        });
+        plyrPlayer.on('exitfullscreen', () => {
+            plyrPlayer.elements.container.classList.remove('plyr-cinema-mode');
         });
     }
 }
